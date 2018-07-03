@@ -1,0 +1,104 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="up.mash.gourmet_mash_up.activity.SignUpActivity">
+
+    <ImageView
+        android:layout_width="223dp"
+        android:layout_height="237dp"
+        android:rotation="-25"
+        android:layout_marginTop="12dp"
+        android:id="@+id/background_image"
+        android:src="@drawable/untitled_1_01"
+        android:alpha="0.1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="170dp"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:text="Join Us!"
+                android:textColor="@color/pink2"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/et_id"
+                android:layout_width="264dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:hint="User ID"
+                android:textColor="@color/gray_2"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:textSize="12sp"/>
+
+            <EditText
+                android:id="@+id/et_pw"
+                android:layout_width="264dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:hint="PassWord"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:inputType="textPassword"
+                android:textColor="@color/gray_2"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/et_pw_confirm"
+                android:layout_width="264dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:gravity="center"
+                android:textColor="@color/gray_2"
+                android:textSize="12sp"
+                android:inputType="textPassword"
+                android:hint="PassWord Confirm" />
+
+            <Button
+                android:layout_width="142dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="58dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/roundedbutton"
+                android:gravity="center"
+                android:text="Sign Up"
+                android:textSize="14sp"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:textColor="#ffffff"
+                android:onClick="goSingIn"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="206dp"
+                android:layout_height="24dp"
+                android:textColor="@color/pink"
+                android:text="Already have an account?"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
