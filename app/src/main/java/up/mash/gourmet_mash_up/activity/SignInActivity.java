@@ -44,7 +44,7 @@ public class SignInActivity extends AppCompatActivity {
 
         it = new Intent(this.getIntent());
 
-        ui_init();
+//        ui_init();
     }
 
     public void goMain(View v) {
