@@ -27,5 +27,5 @@ public interface ApiService {
 
     @POST("/auth/register")
     Call<LoginRes> registerUser(@Field("username") String userName,
-                               @Field("password") String password);
+                                @Field("password") String password);
 }
