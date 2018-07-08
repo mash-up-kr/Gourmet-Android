@@ -17,7 +17,6 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
     private final AnotherFragment anotherFragment;
 
 
-
     public ViewPageAdapter(android.support.v4.app.FragmentManager fm) {
         super(fm);
 
@@ -27,8 +26,8 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch ( position) {
-            case 0 :
+        switch (position) {
+            case 0:
                 return homeFragment;
             case 1:
                 return anotherFragment;

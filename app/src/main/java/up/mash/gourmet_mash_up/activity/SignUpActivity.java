@@ -13,8 +13,7 @@ import up.mash.gourmet_mash_up.R;
 /**
  * A login screen that offers login via email/password.
  */
-public class SignUpActivity extends AppCompatActivity
-{
+public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,9 +24,8 @@ public class SignUpActivity extends AppCompatActivity
         setContentView(R.layout.activity_sign_up);
     }
 
-    public void goSingIn(View v)
-    {
-        Intent it = new Intent( SignUpActivity.this, SignInActivity.class );
+    public void goSingIn(View v) {
+        Intent it = new Intent(SignUpActivity.this, SignInActivity.class);
         startActivity(it);
     }
 }

@@ -19,8 +19,7 @@ public class AnotherFragment extends Fragment {
         return new AnotherFragment();
     }
 
-    public AnotherFragment()
-    {
+    public AnotherFragment() {
         super();
     }
 
