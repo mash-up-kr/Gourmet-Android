@@ -1,11 +1,11 @@
 package up.mash.gourmet_mash_up.adapter;
 
-import android.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import up.mash.gourmet_mash_up.fragment.AnotherFragment;
 import up.mash.gourmet_mash_up.fragment.HomeFragment;
+import up.mash.gourmet_mash_up.fragment.MemberFragment;
+import up.mash.gourmet_mash_up.fragment.RankFragment;
 
 /**
  * Created by derba on 2018-06-30.
@@ -14,14 +14,16 @@ import up.mash.gourmet_mash_up.fragment.HomeFragment;
 public class ViewPageAdapter extends FragmentPagerAdapter {
 
     private final HomeFragment homeFragment;
-    private final AnotherFragment anotherFragment;
+    private final MemberFragment memberFragment;
+    private final RankFragment rankFragment;
 
 
     public ViewPageAdapter(android.support.v4.app.FragmentManager fm) {
         super(fm);
 
-        homeFragment = HomeFragment.newInstance();
-        anotherFragment = AnotherFragment.newInstance();
+        homeFragment = HomeFragment.newInstance(null, null);
+        memberFragment = MemberFragment.newInstance(null, null);
+        rankFragment = RankFragment.newInstance(null, null);
     }
 
     @Override
@@ -30,13 +32,16 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
             case 0:
                 return homeFragment;
             case 1:
-                return anotherFragment;
+                return memberFragment;
+            case 2:
+                return rankFragment;
+
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 }
