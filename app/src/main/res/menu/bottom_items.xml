@@ -4,15 +4,17 @@
 
     <item
         android:id="@+id/action_home"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="home"
-        app:showAsAction="ifRoom"
-
-        />
-
+        android:icon="@drawable/close_icon"
+        android:title="@string/bottom_title_home"
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/aaction_aonother"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="another"
-        app:showAsAction="ifRoom"/>
+        android:id="@+id/action_member"
+        android:icon="@drawable/close_icon"
+        android:title="@string/bottom_title_member"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_rank"
+        android:icon="@drawable/close_icon"
+        android:title="@string/bottom_title_rank"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -1,16 +1,12 @@
 package up.mash.gourmet_mash_up.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.TextView;
-
-import butterknife.BindView;
-
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import butterknife.ButterKnife;
 import up.mash.gourmet_mash_up.R;
@@ -31,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
         it = new Intent(this.getIntent());
 
         bnView = findViewById(R.id.bottom_navigation);
@@ -40,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(viewPageAdapter);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -52,7 +49,10 @@ public class MainActivity extends AppCompatActivity {
                         bnView.setSelectedItemId(R.id.action_home);
                         break;
                     case 1:
-                        bnView.setSelectedItemId(R.id.aaction_aonother);
+                        bnView.setSelectedItemId(R.id.action_member);
+                        break;
+                    case 2:
+                        bnView.setSelectedItemId(R.id.action_rank);
                         break;
                 }
             }
@@ -71,8 +71,11 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.action_home:
                                 viewPager.setCurrentItem(0, true);
                                 break;
-                            case R.id.aaction_aonother:
+                            case R.id.action_member:
                                 viewPager.setCurrentItem(1, true);
+                                break;
+                            case R.id.action_rank:
+                                viewPager.setCurrentItem(2, true);
                                 break;
                         }
                         return true;
@@ -80,7 +83,5 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
-
-
 }
     

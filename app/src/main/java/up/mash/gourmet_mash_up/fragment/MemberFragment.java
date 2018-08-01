@@ -10,16 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.adapter.MemberRecyclerViewAdapter;
 import up.mash.gourmet_mash_up.item.FoodItem;
 import up.mash.gourmet_mash_up.item.ItemwithType;
 import up.mash.gourmet_mash_up.item.UserIdItem;
+
 
 
 public class MemberFragment extends Fragment {
@@ -37,6 +36,7 @@ public class MemberFragment extends Fragment {
 
     public MemberFragment() {
         super();
+
     }
 
     @Override
@@ -98,7 +98,5 @@ public class MemberFragment extends Fragment {
 
             }
         }
-
-
     }
 }
