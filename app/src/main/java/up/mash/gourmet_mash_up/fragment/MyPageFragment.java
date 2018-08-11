@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,24 +44,19 @@ public class MyPageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_page, container, false);
 
         profileImage = view.findViewById(R.id.profile_image);
-        tabLayout = view.findViewById(R.id.my_tab_layout);
-        viewPager = view.findViewById(R.id.my_view_pager);
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
         profileImage.setBackground(new ShapeDrawable(new OvalShape()));
 
         if (Build.VERSION.SDK_INT >= 21) profileImage.setClipToOutline(true);
 
+        tabLayout = view.findViewById(R.id.my_tab_layout);
+
         tabLayout.addTab(tabLayout.newTab().setText("위시리스트 (000)"));
         tabLayout.addTab(tabLayout.newTab().setText("스탬프 (000)"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        MyPageTabPagerAdapter myPageTabPagerAdapter = new MyPageTabPagerAdapter( getChildFragmentManager() , tabLayout.getTabCount());
+        viewPager = view.findViewById(R.id.my_view_pager);
+
+        MyPageTabPagerAdapter myPageTabPagerAdapter = new MyPageTabPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(myPageTabPagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -68,6 +64,7 @@ public class MyPageFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                Log.e("select", "select tab position : " + tab.getPosition());
             }
 
             @Override
@@ -80,5 +77,13 @@ public class MyPageFragment extends Fragment {
 
             }
         });
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 }

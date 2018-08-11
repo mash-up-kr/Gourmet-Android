@@ -2,11 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="130dp"
-    android:layout_gravity="center"
-    android:layout_marginBottom="16dp"
-    android:gravity="center_horizontal|center">
+    android:layout_width="wrap_content"
+    android:layout_height="120dp"
+    android:layout_marginTop="24dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -16,12 +14,12 @@
 
         <ImageView
             android:id="@+id/menu_image"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             app:srcCompat="@drawable/food_ex" />
 
         <RelativeLayout
-            android:layout_width="200dp"
+            android:layout_width="208dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingLeft="8dp"
@@ -55,24 +53,15 @@
                 android:textColor="#9b9b9b"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/like_percentage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="6dp"
-                android:text="취향저격 %"
-                android:textColor="#4a90e2"
-                android:textSize="12sp" />
-
             <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:id="@+id/stamp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginBottom="6dp"
-                app:srcCompat="@drawable/favorite_icon_none" />
+                android:layout_marginBottom="4dp"
+                android:layout_marginRight="16dp"
+                app:srcCompat="@drawable/untitled_1_01" />
 
 
         </RelativeLayout>

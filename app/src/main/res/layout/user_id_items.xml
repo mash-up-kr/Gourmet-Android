@@ -17,7 +17,7 @@
             android:id="@+id/member_user_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@userd"
+            android:text="@userId"
             android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

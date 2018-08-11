@@ -81,11 +81,11 @@ public class MemberRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         if (holder instanceof FoodItemViewHolder) {
             FoodItem foodItem = (FoodItem) itemwithType;
 
-            ((FoodItemViewHolder) holder).menuImage.setImageResource( R.drawable.food_ex );
+            ((FoodItemViewHolder) holder).menuImage.setImageResource(R.drawable.food_ex);
             ((FoodItemViewHolder) holder).tradeName.setText(foodItem.getTradeName());
             ((FoodItemViewHolder) holder).menuName.setText(foodItem.getMenuName());
             ((FoodItemViewHolder) holder).locaionName.setText(foodItem.getLocationName());
-            ((FoodItemViewHolder) holder).best_wish.setImageResource(foodItem.getWish() ? R.drawable.add_wishlist_icon_active: R.drawable.add_wishlist_icon_none);
+            ((FoodItemViewHolder) holder).best_wish.setImageResource(foodItem.getWish() ? R.drawable.add_wishlist_icon_active : R.drawable.add_wishlist_icon_none);
 
         } else {
             UserIdItem userIdItem = (UserIdItem) itemwithType;

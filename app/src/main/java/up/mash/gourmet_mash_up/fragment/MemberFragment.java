@@ -20,7 +20,6 @@ import up.mash.gourmet_mash_up.item.ItemwithType;
 import up.mash.gourmet_mash_up.item.UserIdItem;
 
 
-
 public class MemberFragment extends Fragment {
 
     //@BindView(R.id.member_recycler_view)
@@ -69,28 +68,24 @@ public class MemberFragment extends Fragment {
     public void initArrayListofItems() {
         arrayListofItems = new ArrayList<>();
 
-        for( int i = 0; i < 10; i++ )
-        {
-            if( i % 2 == 0 )
-            {
+        for (int i = 0; i < 10; i++) {
+            if (i % 2 == 0) {
                 UserIdItem userIdItem = new UserIdItem();
 
-                userIdItem.setUserId( "@userId" + (i/2 +1));
+                userIdItem.setUserId("@userId" + (i / 2 + 1));
 
                 arrayListofItems.add(userIdItem);
 
                 Log.e("create", "userId : " + userIdItem.getUserId());
-            }
-            else
-            {
+            } else {
                 FoodItem foodItem = new FoodItem();
 
                 foodItem.setImageLink("food_ex.png");
-                foodItem.setTradeName("상호명"+(i/2+1));
-                foodItem.setMenuName("메뉴명"+(i/2+1));
-                foodItem.setLocationName("위치명"+(i/2+1));
+                foodItem.setTradeName("상호명" + (i / 2 + 1));
+                foodItem.setMenuName("메뉴명" + (i / 2 + 1));
+                foodItem.setLocationName("위치명" + (i / 2 + 1));
                 foodItem.setWish((i / 2) % 2 == 0);
-                foodItem.setLikeDislike(!((i/2)%2==0));
+                foodItem.setLikeDislike(!((i / 2) % 2 == 0));
 
                 arrayListofItems.add(foodItem);
 

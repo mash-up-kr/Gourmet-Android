@@ -5,19 +5,12 @@ package up.mash.gourmet_mash_up.item;
  */
 
 
-public class FoodItem extends ItemwithType {
+public class Food {
 
-    public final int type = 0;
     private String imageLink;
     private String tradeName;
     private String menuName;
     private String locationName;
-    private Boolean wish;
-    private Boolean likeDislike;
-
-    public int getType() {
-        return type;
-    }
 
     public String getImageLink() {
         return imageLink;
@@ -49,21 +42,5 @@ public class FoodItem extends ItemwithType {
 
     public void setLocationName(String locationName) {
         this.locationName = locationName;
-    }
-
-    public Boolean getWish() {
-        return wish;
-    }
-
-    public void setWish(Boolean wish) {
-        this.wish = wish;
-    }
-
-    public Boolean getLikeDislike() {
-        return likeDislike;
-    }
-
-    public void setLikeDislike(Boolean likeDislike) {
-        this.likeDislike = likeDislike;
     }
 }
