@@ -1,6 +1,5 @@
 package up.mash.gourmet_mash_up.adapter;
 
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -67,7 +66,7 @@ public class MemberRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
         switch (viewType) {
             case 0:
-                return new FoodItemViewHolder(layoutInflater.inflate(R.layout.food_items, parent, false));
+                return new FoodItemViewHolder(layoutInflater.inflate(R.layout.food_wish, parent, false));
             case 1:
                 return new UserIdViewHolder(layoutInflater.inflate(R.layout.user_id_items, parent, false));
         }
