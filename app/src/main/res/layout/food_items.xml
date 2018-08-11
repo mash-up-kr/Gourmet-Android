@@ -20,44 +20,62 @@
             android:layout_height="130dp"
             app:srcCompat="@drawable/food_ex" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp">
 
             <TextView
                 android:id="@+id/trade_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="상호명"
-                android:textColor="#000000"
-                android:textSize="10sp" />
+                android:textColor="#444444"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/menu_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/trade_name"
                 android:text="메뉴명"
                 android:textColor="#000000"
-                android:textSize="28sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/location_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/menu_name"
                 android:text="위치"
-                android:textColor="#83919c"
-                android:textSize="13sp" />
+                android:textColor="#9b9b9b"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/like_percentage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="6dp"
+                android:text="취향저격 %"
+                android:textColor="#4a90e2"
+                android:textSize="12sp" />
 
             <ImageView
-                android:id="@+id/my_wish"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="6dp"
                 app:srcCompat="@drawable/favorite_icon_none" />
 
-        </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

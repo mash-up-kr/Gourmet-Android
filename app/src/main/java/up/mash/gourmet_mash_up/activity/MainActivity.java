@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import butterknife.ButterKnife;
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.adapter.ViewPageAdapter;
+import up.mash.gourmet_mash_up.adapter.MainViewPageAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bnView;
 
-    private ViewPageAdapter viewPageAdapter;
+    private MainViewPageAdapter viewPageAdapter;
 
 
     @Override
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         bnView = findViewById(R.id.bottom_navigation);
         viewPager = findViewById(R.id.view_pager);
-        viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
+        viewPageAdapter = new MainViewPageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPageAdapter);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

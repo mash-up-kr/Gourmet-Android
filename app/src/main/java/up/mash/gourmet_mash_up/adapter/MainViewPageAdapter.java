@@ -11,14 +11,14 @@ import up.mash.gourmet_mash_up.fragment.RankFragment;
  * Created by derba on 2018-06-30.
  */
 
-public class ViewPageAdapter extends FragmentPagerAdapter {
+public class MainViewPageAdapter extends FragmentPagerAdapter {
 
     private final HomeFragment homeFragment;
     private final MemberFragment memberFragment;
     private final RankFragment rankFragment;
 
 
-    public ViewPageAdapter(android.support.v4.app.FragmentManager fm) {
+    public MainViewPageAdapter(android.support.v4.app.FragmentManager fm) {
         super(fm);
 
         homeFragment = HomeFragment.newInstance(null, null);

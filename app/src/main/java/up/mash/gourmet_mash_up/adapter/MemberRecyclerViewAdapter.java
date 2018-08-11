@@ -45,7 +45,7 @@ public class MemberRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             tradeName = itemView.findViewById(R.id.trade_name);
             menuName = itemView.findViewById(R.id.menu_name);
             locaionName = itemView.findViewById(R.id.location_name);
-            best_wish = itemView.findViewById(R.id.my_wish);
+            //best_wish = itemView.findViewById(R.id.like_percentage);
             //likeDislike = itemView.findViewById(R.id.like_dislike)
         }
     }

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/roundedbutton" />
+
+        <TextView
+            android:id="@+id/profile_my_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/profile_image"
+            android:layout_marginLeft="14dp"
+            android:layout_toEndOf="@+id/profile_image"
+            android:background="@android:color/transparent"
+            android:text="랭킹 0000위"
+            android:textColor="#4a90e2"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/profile_my_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/profile_my_rank"
+            android:layout_below="@+id/profile_my_rank"
+            android:layout_marginBottom="8dp"
+            android:text="@sample_id"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/profile_my_follower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/profile_my_id"
+            android:layout_below="@+id/profile_my_id"
+            android:text="팔로워"
+            android:textColor="#9b9b9b"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/profile_my_follower_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/profile_my_follower"
+            android:layout_alignBottom="@+id/profile_my_follower"
+            android:layout_marginLeft="4dp"
+            android:layout_toEndOf="@+id/profile_my_follower"
+            android:text="000"
+            android:textColor="#444444"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/profile_my_following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/profile_my_follower"
+            android:layout_alignBottom="@+id/profile_my_follower"
+            android:layout_marginLeft="14dp"
+            android:layout_toEndOf="@+id/profile_my_follower_number"
+            android:text="팔로잉"
+            android:textColor="#9b9b9b"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/profile_my_following_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/profile_my_following"
+            android:layout_marginLeft="4dp"
+            android:layout_toEndOf="@+id/profile_my_following"
+            android:text="111"
+            android:textColor="#444444"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/profile_my_intro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/profile_image"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="22dp"
+            android:text="한 줄 자기소개를 입력하세요"
+            android:textColor="#444444"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/my_page_wish"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="위시리스트( )" />
+
+        <Button
+            android:id="@+id/my_page_stamp"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="스탬프( )" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/my_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="335dp"/>
+
+</LinearLayout>
