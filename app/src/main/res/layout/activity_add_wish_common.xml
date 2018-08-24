@@ -1,10 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AddWishList_1">
+    android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/btn_back"
+        android:contentDescription="@string/back_button" />
+
+    <LinearLayout
+        android:id="@+id/main_text"
+        android:layout_width="312dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="150dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/contents_common_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_question_no"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="@string/q1"
+            android:textColor="@color/turquoise_blue"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tv_ask_question"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/where_do_you_want_to_eat"
+            android:textColor="@color/wish_list_text_color"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/contents_common_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="320dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="296dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/enterNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_button"
+        app:layout_constraintVertical_bias="0.23000002">
+
+        <ImageView
+            android:id="@+id/iv_picture_for_food"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center"
+            android:background="@color/turquoise_blue"
+            android:contentDescription="@string/pic_for_food" />
+
+        <EditText
+            android:id="@+id/et_contents_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="I am Hint Bro"
+            android:inputType="text"
+            android:letterSpacing="0.2sp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:theme="@style/EditTextStyle" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/enterNext"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="31dp"
+        android:layout_marginStart="31dp"
+        android:background="@drawable/round_17dp_emerald_half"
+        android:gravity="center"
+        android:text="@string/next"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

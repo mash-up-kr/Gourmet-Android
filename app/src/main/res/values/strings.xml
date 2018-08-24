@@ -32,4 +32,10 @@
     <string name="add_wish_list">위시리스트 추가</string>
     <string name="add_stamp">스탬프 추가</string>
     <string name="bottom_title_profile">profile</string>
+    <string name="q1">Q1</string>
+    <string name="where_do_you_want_to_eat">어디서 드실건가요?</string>
+    <string name="next">다음</string>
+    <string name="write_shop_name">상호명을 적어주세요.</string>
+    <string name="pic_for_food">pic_for_food</string>
+    <string name="back_button">back_button</string>
 </resources>

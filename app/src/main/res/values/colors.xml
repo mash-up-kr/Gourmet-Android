@@ -8,4 +8,7 @@
     <color name="pink2">#e84a5f</color>
     <color name="gray_2">#999999</color>
     <color name="bottomIconPress">#e84a5f</color>
+    <color name="turquoise_blue">#00adb5</color>
+    <color name="wish_list_text_color">#444444</color>
+
 </resources>
