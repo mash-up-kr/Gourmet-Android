@@ -83,7 +83,7 @@
 
     </LinearLayout>
 
-    <TextView
+    <Button
         android:id="@+id/enterNext"
         android:layout_width="300dp"
         android:layout_height="55dp"
