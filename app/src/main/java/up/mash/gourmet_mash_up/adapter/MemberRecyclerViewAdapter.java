@@ -44,8 +44,7 @@ public class MemberRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             tradeName = itemView.findViewById(R.id.trade_name);
             menuName = itemView.findViewById(R.id.menu_name);
             locaionName = itemView.findViewById(R.id.location_name);
-            //best_wish = itemView.findViewById(R.id.like_percentage);
-            //likeDislike = itemView.findViewById(R.id.like_dislike)
+            likeDislike = itemView.findViewById(R.id.like_dislike);
         }
     }
 
@@ -85,7 +84,6 @@ public class MemberRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             ((FoodItemViewHolder) holder).tradeName.setText(foodItem.getTradeName());
             ((FoodItemViewHolder) holder).menuName.setText(foodItem.getMenuName());
             ((FoodItemViewHolder) holder).locaionName.setText(foodItem.getLocationName());
-            ((FoodItemViewHolder) holder).best_wish.setImageResource(foodItem.getWish() ? R.drawable.add_wishlist_icon_active : R.drawable.add_wishlist_icon_none);
 
         } else {
             UserIdItem userIdItem = (UserIdItem) itemwithType;

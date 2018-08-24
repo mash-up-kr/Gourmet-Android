@@ -22,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.activity.TempActivity;
+import up.mash.gourmet_mash_up.activity.MainActivity;
 import up.mash.gourmet_mash_up.adapter.MyPageTabPagerAdapter;
 
 /**
@@ -53,9 +53,8 @@ public class MyPageFragment extends Fragment {
 
         toolbar = view.findViewById(R.id.my_page_toolbar);
 
-        ((TempActivity) getActivity()).setSupportActionBar(toolbar);
-        setHasOptionsMenu(true);
-
+//        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
+//        setHasOptionsMenu(true);
          collapsingToolbarLayout = view.findViewById(R.id.my_page_collapse);
 
         profileImage = view.findViewById(R.id.profile_image);

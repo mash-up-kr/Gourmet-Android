@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
         android:id="@+id/action_home"
-        android:icon="@drawable/close_icon"
+        android:icon="@drawable/ic_home"
         android:title="@string/bottom_title_home"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_member"
-        android:icon="@drawable/close_icon"
+        android:icon="@drawable/ic_member"
         android:title="@string/bottom_title_member"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/action_add"
+        android:icon="@drawable/ic_plus"
+        app:showAsAction="ifRoom"
+        android:title="" />
+    <item
         android:id="@+id/action_rank"
-        android:icon="@drawable/close_icon"
+        android:icon="@drawable/ic_ranking"
         android:title="@string/bottom_title_rank"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/close_icon"
+        app:showAsAction="always"
+        android:title="@string/bottom_title_profile" />
 </menu>

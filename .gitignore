@@ -63,3 +63,7 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+.idea/markdown-exported-files.xml
+.idea/markdown-navigator.xml
+.idea/codeStyles/Project.xml
+.idea/markdown-navigator/profiles_settings.xml
