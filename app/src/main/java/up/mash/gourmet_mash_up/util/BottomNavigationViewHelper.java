@@ -28,7 +28,7 @@ public class BottomNavigationViewHelper {
 
                     FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) icon.getLayoutParams();
                     params.gravity = Gravity.CENTER;
-                    params.height = 120;
+                    params.height = 100;
                     params.width = 120;
                 }
                 item.setShiftingMode(false);
