@@ -22,8 +22,13 @@ public class PostMainActivity extends AppCompatActivity {
 
     }
 
-    public void enterSignInActivity(View v) {
+    public void enterSignUpActivity(View v) {
         Intent intent = new Intent(PostMainActivity.this, SignUpIdActivity.class);
+        startActivity(intent);
+    }
+
+    public void enterSignInActivity(View v) {
+        Intent intent = new Intent( PostMainActivity.this, SignInActivity.class);
         startActivity(intent);
     }
 }

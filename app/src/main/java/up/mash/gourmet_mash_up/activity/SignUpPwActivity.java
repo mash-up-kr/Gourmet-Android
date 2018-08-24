@@ -65,7 +65,7 @@ public class SignUpPwActivity extends AppCompatActivity {
         button.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( inputText.getText() == null || inputText2.getText() == null || !Objects.equals(inputText.getText().toString(), inputText2.getText().toString()))
+                if (inputText.getText().toString() == "" || inputText2.getText().toString() == "" || !Objects.equals(inputText.getText().toString(), inputText2.getText().toString()))
                     return;
 
                 userInfo.setPw(inputText.getText().toString());
@@ -74,7 +74,5 @@ public class SignUpPwActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 }
