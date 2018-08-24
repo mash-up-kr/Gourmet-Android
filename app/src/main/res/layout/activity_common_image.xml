@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_back" />
+
+    <TextView
+        android:id="@+id/main_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/back_button"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="프로필 이미지를 선택해주세요.(선택)"
+        android:textColor="#444444"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <ImageView
+        android:id="@+id/select_image"
+        android:layout_width="216dp"
+        android:layout_height="216dp"
+        android:layout_below="@+id/main_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/round_216dp_line"
+        android:onClick="selectProfileImage"
+        app:srcCompat="@drawable/plus_icon" />
+
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="타인이 불쾌감을 느끼는 이미지는\n제제의 대상이 될 수 있습니다."
+        android:textColor="#e84a5f"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/enterNext"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_17dp_emerald_half"
+        android:gravity="center"
+        android:text="완료"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+</RelativeLayout>
