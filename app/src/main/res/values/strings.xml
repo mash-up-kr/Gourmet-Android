@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">GOURMET-MASH-UP</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -31,6 +30,7 @@
     <string name="bottom_title_feed">피드</string>
     <string name="add_wish_list">위시리스트 추가</string>
     <string name="add_stamp">스탬프 추가</string>
+    <string name="stamp">스탬프</string>
     <string name="bottom_title_profile">profile</string>
 
     <string name="q1">Q1</string>
@@ -58,4 +58,6 @@
     <string name="put_in_pw">패스워드를 입력해주세요.</string>
     <string name="id">아이디</string>
     <string name="Log_in">로그인</string>
+    <string name="Ranking">Ranking</string>
+    <string name="follower">팔로워</string>
 </resources>

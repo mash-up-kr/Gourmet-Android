@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginStart="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:letterSpacing="0.01"
+        android:textColor="@color/darkish_pink"
+        android:textSize="24.5sp"
+        tools:text="#1" />
+
+    <View
+        android:layout_width="20dp"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/roundedbutton">
+
+    </ImageView>
+
+    <View
+        android:layout_width="8dp"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:layout_width="58dp"
+        android:layout_height="16dp"
+        android:layout_gravity="center"
+        android:text="IDrandom" />
+
+    <View
+        android:layout_width="43dp"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="34dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="10sp"
+            android:textColor="#de000000"
+            android:textSize="12sp"
+            tools:text="@string/stamp" />
+
+        <TextView
+            android:id="@+id/stamp_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.01"
+            android:textColor="#de000000"
+            android:textSize="19.5sp"
+            tools:text="500" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="36dp"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="10sp"
+            android:textColor="#de000000"
+            android:textSize="12sp"
+            tools:text="@string/follower" />
+
+        <TextView
+            android:id="@+id/user_follower_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.01"
+            android:textColor="#de000000"
+            android:textSize="19.5sp"
+            tools:text="10.8k" />
+    </LinearLayout>
+</LinearLayout>

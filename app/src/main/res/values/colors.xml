@@ -7,8 +7,10 @@
     <color name="pink">#ff7e8c</color>
     <color name="pink2">#e84a5f</color>
     <color name="gray_2">#999999</color>
+    <color name="gray_line">#eaeaea</color>
     <color name="bottomIconPress">#e84a5f</color>
     <color name="turquoise_blue">#00adb5</color>
     <color name="wish_list_text_color">#444444</color>
+    <color name="darkish_pink">#e84a5f</color>
 
 </resources>
