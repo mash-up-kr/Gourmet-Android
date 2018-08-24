@@ -10,9 +10,9 @@
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/sign_up_id" />
+        app:srcCompat="@drawable/btn_back" />
 
     <TextView
         android:id="@+id/main_text"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/back_button"
         android:layout_below="@+id/back_button"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:text="main text"
         android:textColor="#444444"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@id/main_text"
         android:layout_below="@id/main_text"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginTop="40dp"
         android:orientation="vertical">
 
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@id/input_type_1"
         android:layout_below="@id/input_type_1"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginTop="40dp"
         android:orientation="vertical">
 

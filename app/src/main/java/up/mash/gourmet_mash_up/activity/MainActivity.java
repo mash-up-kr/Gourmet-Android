@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPageAdapter);
 
-        if(fragmentBackStack.isEmpty()) fragmentBackStack.push(0);
+        if (fragmentBackStack.isEmpty()) fragmentBackStack.push(0);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
