@@ -7,4 +7,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="colorControlNormal">#00adb5</item>
+        <item name="colorControlActivated">#00adb5</item>
+        <item name="android:textColor">#2f2a28</item>
+    </style>
+
 </resources>

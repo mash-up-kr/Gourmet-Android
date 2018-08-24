@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/sign_up_id" />
+
+    <TextView
+        android:id="@+id/main_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/back_button"
+        android:layout_below="@+id/back_button"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:text="main text"
+        android:textColor="#444444"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <LinearLayout
+        android:id="@+id/input_type_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/main_text"
+        android:layout_below="@id/main_text"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tv 1"
+            android:textColor="#2f2a28"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/ed1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:theme="@style/EditTextStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/input_type_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/input_type_1"
+        android:layout_below="@id/input_type_1"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tv 2"
+            android:textColor="#2f2a28"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/ed2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:theme="@style/EditTextStyle" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_17dp_emerald_half"
+        android:gravity="center"
+        android:text="다음"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+</RelativeLayout>
