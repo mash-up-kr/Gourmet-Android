@@ -1,6 +1,7 @@
 package up.mash.gourmet_mash_up.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +13,6 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import butterknife.ButterKnife;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.adapter.MemberRecyclerViewAdapter;
 import up.mash.gourmet_mash_up.item.FoodItem;
@@ -22,12 +22,11 @@ import up.mash.gourmet_mash_up.item.UserIdItem;
 
 public class MemberFragment extends Fragment {
 
-    //@BindView(R.id.member_recycler_view)
     RecyclerView recyclerView;
 
     MemberRecyclerViewAdapter memberRecyclerViewAdapter;
 
-    public ArrayList<ItemwithType> arrayListofItems;
+    public ArrayList<ItemwithType> arrayListOfItems;
 
     public static MemberFragment newInstance() {
         return new MemberFragment();
@@ -44,29 +43,25 @@ public class MemberFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_member, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ButterKnife.bind(this, view);
+        initArrayListOfItems();
 
-        initArrayListofItems();
-
-        memberRecyclerViewAdapter = new MemberRecyclerViewAdapter(arrayListofItems);
-
+        memberRecyclerViewAdapter = new MemberRecyclerViewAdapter(arrayListOfItems);
         recyclerView = view.findViewById(R.id.member_recycler_view);
-
         recyclerView.setAdapter(memberRecyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
     }
 
-    public void initArrayListofItems() {
-        arrayListofItems = new ArrayList<>();
+    public void initArrayListOfItems() {
+        arrayListOfItems = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
             if (i % 2 == 0) {
@@ -74,7 +69,7 @@ public class MemberFragment extends Fragment {
 
                 userIdItem.setUserId("@userId" + (i / 2 + 1));
 
-                arrayListofItems.add(userIdItem);
+                arrayListOfItems.add(userIdItem);
 
                 Log.e("create", "userId : " + userIdItem.getUserId());
             } else {
@@ -87,7 +82,7 @@ public class MemberFragment extends Fragment {
                 foodItem.setWish((i / 2) % 2 == 0);
                 foodItem.setLikeDislike(!((i / 2) % 2 == 0));
 
-                arrayListofItems.add(foodItem);
+                arrayListOfItems.add(foodItem);
 
                 Log.e("create", "menuName : " + foodItem.getMenuName());
 

@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import up.mash.gourmet_mash_up.fragment.HomeFragment;
 import up.mash.gourmet_mash_up.fragment.MemberFragment;
 import up.mash.gourmet_mash_up.fragment.MyPageFragment;
 import up.mash.gourmet_mash_up.fragment.ProfileFragment;
