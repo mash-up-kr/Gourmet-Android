@@ -3,23 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_home"
+        android:icon="@drawable/ic_home"
         android:title="@string/bottom_title_home"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_feed"
-        android:title="@string/bottom_title_feed"
+        android:id="@+id/action_member"
+        android:icon="@drawable/ic_member"
+        android:title="@string/bottom_title_member"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_add"
-        android:title="@string/bottom_title_add"
-        app:showAsAction="ifRoom" />
+        android:icon="@drawable/ic_plus"
+        app:showAsAction="ifRoom"
+        android:title="" />
     <item
         android:id="@+id/action_rank"
+        android:icon="@drawable/ic_ranking"
         android:title="@string/bottom_title_rank"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_profile"
         android:icon="@drawable/close_icon"
         app:showAsAction="always"
-        android:title="" />
+        android:title="@string/bottom_title_profile" />
 </menu>

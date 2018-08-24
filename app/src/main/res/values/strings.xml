@@ -17,9 +17,9 @@
         completions."
     </string>
     <string name="title_activity_login2">Sign in</string>
-    <string name="bottom_title_home">홈</string>
+    <string name="bottom_title_home">home</string>
     <string name="bottom_title_member">member</string>
-    <string name="bottom_title_rank">랭크</string>
+    <string name="bottom_title_rank">ranking</string>
     <string name="password_confirm">PassWord Confirm</string>
     <string name="sign_up">Sign Up</string>
     <string name="join_us">Join Us!</string>
@@ -31,4 +31,5 @@
     <string name="bottom_title_feed">피드</string>
     <string name="add_wish_list">위시리스트 추가</string>
     <string name="add_stamp">스탬프 추가</string>
+    <string name="bottom_title_profile">profile</string>
 </resources>

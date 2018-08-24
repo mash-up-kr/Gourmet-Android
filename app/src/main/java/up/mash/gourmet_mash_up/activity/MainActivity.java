@@ -3,12 +3,10 @@ package up.mash.gourmet_mash_up.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import java.util.Stack;
 
@@ -16,6 +14,7 @@ import butterknife.ButterKnife;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.adapter.ViewPageAdapter;
 import up.mash.gourmet_mash_up.fragment.AddFragment;
+import up.mash.gourmet_mash_up.util.BottomNavigationViewHelper;
 import up.mash.gourmet_mash_up.util.FragmentUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,17 +40,11 @@ public class MainActivity extends AppCompatActivity {
         it = new Intent(this.getIntent());
 
         bnView = findViewById(R.id.bottom_navigation);
-        bnViewMenu = (BottomNavigationMenuView) bnView.getChildAt(0);
-
-        for (int i = 0; i < bnViewMenu.getChildCount(); i++) {
-            BottomNavigationItemView itemView = (BottomNavigationItemView) bnViewMenu.getChildAt(i);
-            itemView.setShiftingMode(false);
-            itemView.setChecked(false);
-        }
-
+        BottomNavigationViewHelper.disableShiftMode(bnView);
         viewPager = findViewById(R.id.view_pager);
         viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPageAdapter);
+
         if(fragmentBackStack.isEmpty()) fragmentBackStack.push(0);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -62,14 +55,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
 
-                Log.d(TAG, position + "");
                 fragmentBackStack.push(position);
                 switch (position) {
                     case 0:
                         bnView.setSelectedItemId(R.id.action_home);
                         break;
                     case 1:
-                        bnView.setSelectedItemId(R.id.action_feed);
+                        bnView.setSelectedItemId(R.id.action_member);
                         break;
                     case 2:
                         bnView.setSelectedItemId(R.id.action_rank);
@@ -92,11 +84,12 @@ public class MainActivity extends AppCompatActivity {
                             if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
                                 viewPager.setCurrentItem(0, true);
                             break;
-                        case R.id.action_feed:
+                        case R.id.action_member:
                             if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
                                 viewPager.setCurrentItem(1, true);
                             break;
                         case R.id.action_add:
+
                             if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager())) {
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.entry_view, addFragment)
@@ -137,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 bnView.setSelectedItemId(R.id.action_home);
                 break;
             case 1:
-                bnView.setSelectedItemId(R.id.action_feed);
+                bnView.setSelectedItemId(R.id.action_member);
                 break;
             case 2:
                 bnView.setSelectedItemId(R.id.action_rank);
