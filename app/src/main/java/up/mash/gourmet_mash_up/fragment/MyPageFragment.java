@@ -1,8 +1,5 @@
 package up.mash.gourmet_mash_up.fragment;
 
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.activity.MainActivity;
 import up.mash.gourmet_mash_up.adapter.MyPageTabPagerAdapter;
 
 /**
@@ -57,10 +53,10 @@ public class MyPageFragment extends Fragment {
 //        setHasOptionsMenu(true);
          collapsingToolbarLayout = view.findViewById(R.id.my_page_collapse);
 
-        profileImage = view.findViewById(R.id.profile_image);
-        profileImage.setBackground(new ShapeDrawable(new OvalShape()));
+//        profileImage = view.findViewById(R.id.profile_image);
+//        profileImage.setBackground(new ShapeDrawable(new OvalShape()));
 
-        if (Build.VERSION.SDK_INT >= 21) profileImage.setClipToOutline(true);
+//        if (Build.VERSION.SDK_INT >= 21) profileImage.setClipToOutline(true);
 
         tabLayout = view.findViewById(R.id.my_tab_layout);
 
