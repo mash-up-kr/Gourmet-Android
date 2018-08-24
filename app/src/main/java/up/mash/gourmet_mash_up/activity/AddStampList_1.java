@@ -10,9 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.model.local.WishList;
+import up.mash.gourmet_mash_up.model.local.Stamp;
 
-public class AddWishList_1 extends AppCompatActivity {
+public class AddStampList_1 extends AppCompatActivity {
 
     private ImageView iv_back_button;
     private TextView tv_question_no;
@@ -29,7 +29,7 @@ public class AddWishList_1 extends AppCompatActivity {
         init_common_stamp_wishlist();
 
         tv_question_no.setText(R.string.q1);
-        tv_ask_question.setText(R.string.where_do_you_want_to_eat);
+        tv_ask_question.setText(R.string.where_will_you_want_to_eat);
 
         iv_picture_for_food.setVisibility(View.GONE);
 
@@ -37,8 +37,8 @@ public class AddWishList_1 extends AppCompatActivity {
 
         enter_next.setOnClickListener(v -> {
             String a = et_contents_stamp_wishList.getText().toString();
-            WishList.getIntance().setWhat(a);
-            startActivity(new Intent(AddWishList_1.this, AddWishList_2.class));
+            Stamp.getIntance().setWhat(a);
+            startActivity(new Intent(AddStampList_1.this, AddStampList_2.class));
         });
 
         iv_back_button.setOnClickListener(v -> onBackPressed());

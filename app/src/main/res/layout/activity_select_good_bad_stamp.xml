@@ -67,14 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/back_button"
         app:layout_constraintVertical_bias="0.404">
 
-        <ImageView
-            android:id="@+id/iv_picture_for_food"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="48dp"
-            android:background="@color/turquoise_blue"
-            android:contentDescription="@string/pic_for_food" />
+        <include layout="@layout/item_select_good_bad"/>
 
         <EditText
             android:id="@+id/et_contents_stamp_wishList"

@@ -10,9 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.model.local.WishList;
+import up.mash.gourmet_mash_up.model.local.Stamp;
 
-public class AddWishList_1 extends AppCompatActivity {
+public class AddStampList_2 extends AppCompatActivity {
 
     private ImageView iv_back_button;
     private TextView tv_question_no;
@@ -28,17 +28,19 @@ public class AddWishList_1 extends AppCompatActivity {
 
         init_common_stamp_wishlist();
 
-        tv_question_no.setText(R.string.q1);
-        tv_ask_question.setText(R.string.where_do_you_want_to_eat);
+        tv_question_no.setText(R.string.q2);
+        tv_ask_question.setText(R.string.what_will_you_want_to_eat);
 
-        iv_picture_for_food.setVisibility(View.GONE);
+        iv_picture_for_food.setVisibility(View.VISIBLE);
 
-        et_contents_stamp_wishList.setHint(R.string.hint_write_shop_name);
+        //TODO 갤러리로부터 이미지 가져오기.
+
+        et_contents_stamp_wishList.setHint(R.string.hint_write_menu_name);
 
         enter_next.setOnClickListener(v -> {
             String a = et_contents_stamp_wishList.getText().toString();
-            WishList.getIntance().setWhat(a);
-            startActivity(new Intent(AddWishList_1.this, AddWishList_2.class));
+            Stamp.getIntance().setWhere(a);
+            startActivity(new Intent(AddStampList_2.this, AddStampList_3.class));
         });
 
         iv_back_button.setOnClickListener(v -> onBackPressed());

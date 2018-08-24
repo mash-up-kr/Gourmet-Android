@@ -12,7 +12,7 @@ import android.widget.TextView;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.model.local.WishList;
 
-public class AddWishList_1 extends AppCompatActivity {
+public class AddWishList_3 extends AppCompatActivity {
 
     private ImageView iv_back_button;
     private TextView tv_question_no;
@@ -28,17 +28,20 @@ public class AddWishList_1 extends AppCompatActivity {
 
         init_common_stamp_wishlist();
 
-        tv_question_no.setText(R.string.q1);
-        tv_ask_question.setText(R.string.where_do_you_want_to_eat);
+        tv_question_no.setText(R.string.q3);
+        tv_ask_question.setText(R.string.where_the_shop_is_located);
 
         iv_picture_for_food.setVisibility(View.GONE);
 
-        et_contents_stamp_wishList.setHint(R.string.hint_write_shop_name);
+        et_contents_stamp_wishList.setHint(R.string.hint_write_address);
 
         enter_next.setOnClickListener(v -> {
             String a = et_contents_stamp_wishList.getText().toString();
-            WishList.getIntance().setWhat(a);
-            startActivity(new Intent(AddWishList_1.this, AddWishList_2.class));
+            WishList.getIntance().setAddress(a);
+            //TODO 인터넷 연결
+            startActivity(new Intent(AddWishList_3.this, MainActivity.class));
+            finish();
+
         });
 
         iv_back_button.setOnClickListener(v -> onBackPressed());

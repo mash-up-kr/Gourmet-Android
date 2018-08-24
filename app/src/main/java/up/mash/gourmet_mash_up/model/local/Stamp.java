@@ -4,12 +4,27 @@ public class Stamp {
 
     private String where;
     private String what;
-    private String address;
+    private String how;
 
-    public Stamp(String where, String what, String address) {
-        this.where = where;
-        this.what = what;
-        this.address = address;
+    private static Stamp instance;
+
+    public static Stamp getIntance() {
+        if (instance == null) {
+            instance = new Stamp();
+        }
+        return instance;
+    }
+
+    private Stamp() {
+        this.where = "";
+        this.what = "";
+        this.how = "";
+    }
+
+    public void clear() {
+        this.where = "";
+        this.what = "";
+        this.how = "";
     }
 
     public String getWhere() {
@@ -28,11 +43,11 @@ public class Stamp {
         this.what = what;
     }
 
-    public String getAddress() {
-        return address;
+    public String getHow() {
+        return how;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setHow(String address) {
+        this.how = address;
     }
 }

@@ -10,35 +10,37 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.model.local.WishList;
 
-public class AddWishList_1 extends AppCompatActivity {
+public class AddStampList_3 extends AppCompatActivity {
 
     private ImageView iv_back_button;
     private TextView tv_question_no;
     private TextView tv_ask_question;
-    private ImageView iv_picture_for_food;
     private EditText et_contents_stamp_wishList;
     private Button enter_next;
-
+    private View select_containar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_wish_common);
+        setContentView(R.layout.activity_select_good_bad_stamp);
 
         init_common_stamp_wishlist();
 
-        tv_question_no.setText(R.string.q1);
-        tv_ask_question.setText(R.string.where_do_you_want_to_eat);
+        tv_question_no.setText(R.string.q3);
+        tv_ask_question.setText(R.string.how_the_taste);
 
-        iv_picture_for_food.setVisibility(View.GONE);
+        et_contents_stamp_wishList.setVisibility(View.GONE);
 
-        et_contents_stamp_wishList.setHint(R.string.hint_write_shop_name);
+        select_containar = findViewById(R.id.select_container_view);
+        ImageView iv_good = select_containar.findViewById(R.id.good);
+        ImageView iv_bac = select_containar.findViewById(R.id.bad);
+
 
         enter_next.setOnClickListener(v -> {
-            String a = et_contents_stamp_wishList.getText().toString();
-            WishList.getIntance().setWhat(a);
-            startActivity(new Intent(AddWishList_1.this, AddWishList_2.class));
+            //TODO 인터넷 연결
+            startActivity(new Intent(AddStampList_3.this, MainActivity.class));
+            finish();
+
         });
 
         iv_back_button.setOnClickListener(v -> onBackPressed());
@@ -49,7 +51,6 @@ public class AddWishList_1 extends AppCompatActivity {
         iv_back_button = findViewById(R.id.back_button);
         tv_question_no = findViewById(R.id.tv_question_no);
         tv_ask_question = findViewById(R.id.tv_ask_question);
-        iv_picture_for_food = findViewById(R.id.iv_picture_for_food);
         et_contents_stamp_wishList = findViewById(R.id.et_contents_stamp_wishList);
         enter_next = findViewById(R.id.enterNext);
     }

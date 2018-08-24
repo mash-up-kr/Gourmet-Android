@@ -6,10 +6,25 @@ public class WishList {
     private String what;
     private String address;
 
-    public WishList(String where, String what, String address) {
-        this.where = where;
-        this.what = what;
-        this.address = address;
+    private static WishList instance;
+
+    public static WishList getIntance() {
+        if (instance == null) {
+            instance = new WishList();
+        }
+        return instance;
+    }
+
+    private WishList() {
+        this.where = "";
+        this.what = "";
+        this.address = "";
+    }
+
+    public void clear() {
+        this.where = "";
+        this.what = "";
+        this.address = "";
     }
 
     public String getWhere() {
