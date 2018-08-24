@@ -5,28 +5,26 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import up.mash.gourmet_mash_up.R;
 
 /**
  * Created by derba on 2018-08-24.
  */
 
-public class SignUpIdActivity extends AppCompatActivity {
+public class SignUpPwActivity extends AppCompatActivity {
 
+    LinearLayout linearLayout;
     TextView mainText;
     TextView subText;
-    TextView subText2;
     TextView button;
     EditText inputText;
-    EditText InputText2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,15 +33,16 @@ public class SignUpIdActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        linearLayout = findViewById(R.id.input_type_2);
+        linearLayout.setVisibility(View.GONE);
+
         mainText = findViewById(R.id.main_text);
-        mainText.setText("패스워드를 입력해주세요.");
+        mainText.setText("아이디를 입력해주세요.");
 
         subText = findViewById(R.id.tv1);
-        subText.setText("패스워드");
-
-        subText2 = findViewById(R.id.tv2);
-        subText2.setText("패스워드 확인");
+        subText.setText("아이디");
 
         button = findViewById(R.id.enterNext);
+
     }
 }
