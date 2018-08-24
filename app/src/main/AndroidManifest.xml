@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activity.FirstMainActivity"
+            android:name=".activity.PostMainActivity"
             android:label="SignUpActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>

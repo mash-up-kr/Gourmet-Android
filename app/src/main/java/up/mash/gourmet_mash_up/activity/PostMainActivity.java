@@ -12,7 +12,7 @@ import up.mash.gourmet_mash_up.R;
  * Created by derba on 2018-08-24.
  */
 
-public class FirstMainActivity extends AppCompatActivity {
+public class PostMainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class FirstMainActivity extends AppCompatActivity {
     }
 
     public void enterSignInActivity(View v) {
-        Intent intent = new Intent(FirstMainActivity.this, SignUpIdActivity.class);
+        Intent intent = new Intent(PostMainActivity.this, SignUpIdActivity.class);
         startActivity(intent);
     }
 }
