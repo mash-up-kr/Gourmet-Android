@@ -10,9 +10,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import butterknife.ButterKnife;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.item.UserInfo;
+import up.mash.gourmet_mash_up.util.ActivityConstants;
 
 /**
  * Created by derba on 2018-08-24.
@@ -36,25 +36,22 @@ public class SignUpIdActivity extends AppCompatActivity {
         linearLayout.setVisibility(View.GONE);
 
         mainText = findViewById(R.id.main_text);
-        mainText.setText("아이디를 입력해주세요.");
+        mainText.setText(R.string.put_in_id);
 
         subText = findViewById(R.id.tv1);
-        subText.setText("아이디");
+        subText.setText(R.string.id);
 
         inputText = findViewById(R.id.ed1);
 
         button = findViewById(R.id.enterNext);
-        button.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if( inputText.getText().toString() == "" ) return;
+        button.setOnClickListener(v -> {
+            if (inputText.getText().toString().equals("")) return;
 
-                UserInfo userInfo = new UserInfo();
-                userInfo.setId( inputText.getText().toString() );
-                Intent intent = new Intent(getApplicationContext(), SignUpPwActivity.class);
-                intent.putExtra("USERINFO", userInfo);
-                startActivity(intent);
-            }
+            UserInfo userInfo = new UserInfo();
+            userInfo.setId(inputText.getText().toString());
+            Intent intent = new Intent(getApplicationContext(), SignUpPwActivity.class);
+            intent.putExtra(ActivityConstants.USERINFO, userInfo);
+            startActivity(intent);
         });
     }
 }

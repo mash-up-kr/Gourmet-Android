@@ -20,12 +20,12 @@
     <string name="bottom_title_home">home</string>
     <string name="bottom_title_member">member</string>
     <string name="bottom_title_rank">ranking</string>
-    <string name="password_confirm">PassWord Confirm</string>
+    <string name="password_confirm">패스워드 확인</string>
     <string name="sign_up">Sign Up</string>
     <string name="join_us">Join Us!</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="sign_in">Sign In</string>
-    <string name="password">PassWord</string>
+    <string name="password">패스워드</string>
     <string name="user_id">User ID</string>
     <string name="bottom_title_add">+</string>
     <string name="bottom_title_feed">피드</string>
@@ -51,4 +51,11 @@
     <string name="hint_write_address">위치를 적어주세요.</string>
     <string name="pic_for_food">pic_for_food</string>
     <string name="back_button">back_button</string>
+    <string name="put_in_id">아이디를 입력해주세요.</string>
+    <string name="put_in_your_PR">한 줄 자기소개를 입력해주세요.</string>
+    <string name="one_line_PR">한 줄 소개</string>
+    <string name="complete">완료</string>
+    <string name="put_in_pw">패스워드를 입력해주세요.</string>
+    <string name="id">아이디</string>
+    <string name="Log_in">로그인</string>
 </resources>

@@ -40,6 +40,7 @@ public class AddWishList_3 extends AppCompatActivity {
             WishList.getIntance().setAddress(a);
             //TODO 인터넷 연결
             startActivity(new Intent(AddWishList_3.this, MainActivity.class));
+            WishList.getIntance().clear();
             finish();
 
         });

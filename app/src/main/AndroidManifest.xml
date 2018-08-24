@@ -21,7 +21,12 @@
         <activity
             android:name=".activity.PostMainActivity"
             android:label="SignUpActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.SignUpIdActivity"
             android:label="SignUpActivity"
@@ -49,11 +54,9 @@
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
+
         <activity android:name=".activity.AddWishList_1" />
         <activity android:name=".activity.AddWishList_2" />
         <activity android:name=".activity.AddWishList_3" />

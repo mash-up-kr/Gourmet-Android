@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class UserInfo implements Serializable {
+
     private String id;
     private String pw;
     private String intro;

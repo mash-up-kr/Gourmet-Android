@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import up.mash.gourmet_mash_up.R;
+import up.mash.gourmet_mash_up.model.local.Stamp;
 
 public class AddStampList_3 extends AppCompatActivity {
 
@@ -39,6 +40,7 @@ public class AddStampList_3 extends AppCompatActivity {
         enter_next.setOnClickListener(v -> {
             //TODO 인터넷 연결
             startActivity(new Intent(AddStampList_3.this, MainActivity.class));
+            Stamp.getIntance().clear();
             finish();
 
         });

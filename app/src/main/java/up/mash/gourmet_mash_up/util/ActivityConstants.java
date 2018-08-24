@@ -10,5 +10,7 @@ public interface ActivityConstants {
     static String stamp02 = "stamp02";
     static String stamp03 = "stamp03";
 
+    static String USERINFO = "USERINFO";
+
 
 }

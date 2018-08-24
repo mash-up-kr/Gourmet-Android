@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.item.UserInfo;
+import up.mash.gourmet_mash_up.util.ActivityConstants;
 
 /**
  * Created by derba on 2018-08-24.
@@ -35,15 +35,13 @@ public class SignUpInActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        UserInfo userInfo = (UserInfo) intent.getSerializableExtra("USERINFO");
-
-        Log.e("USERINFO", "pw : " + userInfo.getPw() );
+        UserInfo userInfo = (UserInfo) intent.getSerializableExtra(ActivityConstants.USERINFO);
 
         mainText = findViewById(R.id.main_text);
-        mainText.setText("한 줄 자기소개를 입력해주세요.");
+        mainText.setText(R.string.put_in_your_PR);
 
         subText = findViewById(R.id.tv1);
-        subText.setText("한 줄 소개");
+        subText.setText(R.string.one_line_PR);
 
         inputText = findViewById(R.id.ed1);
 
@@ -51,16 +49,15 @@ public class SignUpInActivity extends AppCompatActivity {
         linearLayout.setVisibility(View.GONE);
 
         button = findViewById(R.id.enterNext);
-        button.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if( inputText.getText().toString() == ""  ) return;
+        button.setOnClickListener(v -> {
+            if (inputText.getText().toString().equals("")) return;
 
-                userInfo.setIntro( inputText.getText().toString() );
-                Intent intent = new Intent(SignUpInActivity.this, SignUpPrActivity.class);
-                intent.putExtra("USERINFO", userInfo);
-                startActivity(intent);
-            }
+            //TODO 토스트 메시지 띄어주면서 입력안되게
+
+            userInfo.setIntro(inputText.getText().toString());
+            Intent intent1 = new Intent(SignUpInActivity.this, SignUpPrActivity.class);
+            intent1.putExtra(ActivityConstants.USERINFO, userInfo);
+            startActivity(intent1);
         });
 
 
