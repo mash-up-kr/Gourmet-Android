@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.item.UserInfo;
@@ -45,7 +46,10 @@ public class SignUpIdActivity extends AppCompatActivity {
 
         button = findViewById(R.id.enterNext);
         button.setOnClickListener(v -> {
-            if (inputText.getText().toString().equals("")) return;
+            if (inputText.getText().toString().equals("")) {
+                Toast.makeText(SignUpIdActivity.this, "아이디를 입력해주세요.", Toast.LENGTH_LONG).show();
+                return;
+            }
 
             UserInfo userInfo = new UserInfo();
             userInfo.setId(inputText.getText().toString());

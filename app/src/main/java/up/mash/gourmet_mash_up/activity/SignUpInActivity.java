@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.item.UserInfo;
@@ -50,9 +51,10 @@ public class SignUpInActivity extends AppCompatActivity {
 
         button = findViewById(R.id.enterNext);
         button.setOnClickListener(v -> {
-            if (inputText.getText().toString().equals("")) return;
-
-            //TODO 토스트 메시지 띄어주면서 입력안되게
+            if (inputText.getText().toString().equals("")) {
+                Toast.makeText(SignUpInActivity.this, "자기소개를 입력해주세요.", Toast.LENGTH_LONG).show();
+                return;
+            }
 
             userInfo.setIntro(inputText.getText().toString());
             Intent intent1 = new Intent(SignUpInActivity.this, SignUpPrActivity.class);

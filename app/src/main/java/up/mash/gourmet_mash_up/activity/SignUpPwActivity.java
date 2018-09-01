@@ -58,7 +58,9 @@ public class SignUpPwActivity extends AppCompatActivity {
 
         button = findViewById(R.id.enterNext);
         button.setOnClickListener(v -> {
-            if (inputText.getText().toString().equals("") || inputText2.getText().toString().equals("") || !Objects.equals(inputText.getText().toString(), inputText2.getText().toString())) {
+            if (inputText.getText().toString().equals("")
+                    || inputText2.getText().toString().equals("")
+                    || !Objects.equals(inputText.getText().toString(), inputText2.getText().toString())) {
                 return;
             }
 
