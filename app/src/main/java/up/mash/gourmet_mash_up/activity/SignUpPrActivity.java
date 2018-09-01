@@ -3,12 +3,14 @@ package up.mash.gourmet_mash_up.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -20,7 +22,12 @@ import java.io.File;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import up.mash.gourmet_mash_up.R;
+import up.mash.gourmet_mash_up.data.remote.BaseNetworkRequestModule;
+import up.mash.gourmet_mash_up.data.remote.model.login.RegisterRes;
 import up.mash.gourmet_mash_up.item.UserInfo;
 import up.mash.gourmet_mash_up.util.ActivityConstants;
 import up.mash.gourmet_mash_up.util.Glide4Engine;
@@ -31,6 +38,7 @@ import up.mash.gourmet_mash_up.util.Glide4Engine;
 
 public class SignUpPrActivity extends AppCompatActivity {
 
+    final static String TAG = SignUpPrActivity.class.getSimpleName();
     ImageView imageView;
     Button button;
 
@@ -48,10 +56,26 @@ public class SignUpPrActivity extends AppCompatActivity {
 
         button = findViewById(R.id.enterNext);
         button.setText(R.string.complete);
-        //TODO REST API 통신
         button.setOnClickListener(v -> {
-            Intent intent1 = new Intent(getApplicationContext(), SignInActivity.class);
-            startActivity(intent1);
+            BaseNetworkRequestModule.requestRegisterUser(userInfo.getId(), userInfo.getPw(), new Callback<RegisterRes>() {
+                @Override
+                public void onResponse(@NonNull Call<RegisterRes> call, @NonNull Response<RegisterRes> response) {
+                    if (response.isSuccessful()) {
+                        Intent signIn = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(signIn);
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                //https://stackoverflow.com/questions/21398598/how-to-post-raw-whole-json-in-the-body-of-a-retrofit-request
+                @Override
+                public void onFailure(@NonNull Call<RegisterRes> call, @NonNull Throwable t) {
+                    Toast.makeText(getApplicationContext(), "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         });
     }
 
