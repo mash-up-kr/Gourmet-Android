@@ -2,7 +2,6 @@ package up.mash.gourmet_mash_up.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
@@ -12,12 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.data.remote.BaseNetworkRequestModule;
-import up.mash.gourmet_mash_up.data.remote.model.login.LoginRes;
 
 import static android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD;
 
@@ -64,23 +58,26 @@ public class SignInActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
                 return;
             }
+            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+            finish();
+//
 
-            BaseNetworkRequestModule.requestLogIn(id, password, new Callback<LoginRes>() {
-                @Override
-                public void onResponse(@NonNull Call<LoginRes> call, @NonNull Response<LoginRes> response) {
-                    if (response.isSuccessful()) {
-                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
-                        finish();
-                    } else {
-                        Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<LoginRes> call, @NonNull Throwable t) {
-
-                }
-            });
+//            BaseNetworkRequestModule.requestLogIn(id, password, new Callback<LoginRes>() {
+//                @Override
+//                public void onResponse(@NonNull Call<LoginRes> call, @NonNull Response<LoginRes> response) {
+//                    if (response.isSuccessful()) {
+//                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
+//                        finish();
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(@NonNull Call<LoginRes> call, @NonNull Throwable t) {
+//
+//                }
+//            });
         });
     }
 }
