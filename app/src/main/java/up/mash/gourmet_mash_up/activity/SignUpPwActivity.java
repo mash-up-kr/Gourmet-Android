@@ -57,6 +57,7 @@ public class SignUpPwActivity extends AppCompatActivity {
         inputText2.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         button = findViewById(R.id.enterNext);
+
         button.setOnClickListener(v -> {
             if (inputText.getText().toString().equals("")
                     || inputText2.getText().toString().equals("")

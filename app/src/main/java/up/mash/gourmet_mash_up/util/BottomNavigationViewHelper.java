@@ -23,7 +23,7 @@ public class BottomNavigationViewHelper {
             shiftingMode.setAccessible(false);
             for (int i = 0; i < menuView.getChildCount(); i++) {
                 BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
-                if(i == 2){
+                if (i == 3) {
                     AppCompatImageView icon = (AppCompatImageView) item.getChildAt(0);
 
                     FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) icon.getLayoutParams();

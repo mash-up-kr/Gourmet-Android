@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import up.mash.gourmet_mash_up.fragment.MemberFragment;
+//import up.mash.gourmet_mash_up.fragment.MemberFragment;
 import up.mash.gourmet_mash_up.fragment.MyPageFragment;
 import up.mash.gourmet_mash_up.fragment.ProfileFragment;
 import up.mash.gourmet_mash_up.fragment.RankFragment;
@@ -15,7 +15,7 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
     private static final String TAG = ViewPageAdapter.class.getSimpleName();
 
     private final MyPageFragment homeFragment;
-    private final MemberFragment memberFragment;
+//    private final MemberFragment memberFragment;
     private final RankFragment rankFragment;
     private final ProfileFragment profileFragment;
 
@@ -23,7 +23,7 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
         super(fm);
 
         homeFragment = MyPageFragment.newInstance();
-        memberFragment = MemberFragment.newInstance();
+//        memberFragment = MemberFragment.newInstance();
         rankFragment = RankFragment.newInstance(null, null);
         profileFragment = new ProfileFragment();
     }
@@ -33,11 +33,11 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return homeFragment;
+//            case 1:
+//                return memberFragment;
             case 1:
-                return memberFragment;
-            case 2:
                 return rankFragment;
-            case 3:
+            case 2:
                 return profileFragment;
         }
         return null;
@@ -45,6 +45,6 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 }

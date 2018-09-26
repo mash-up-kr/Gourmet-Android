@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         it = new Intent(this.getIntent());
         bnView = findViewById(R.id.bottom_navigation);
+
         BottomNavigationViewHelper.disableShiftMode(bnView);
+
         viewPager = findViewById(R.id.view_pager);
         viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPageAdapter);
@@ -59,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         bnView.setSelectedItemId(R.id.action_home);
                         break;
+//                    case 1:
+//                        bnView.setSelectedItemId(R.id.action_member);
+//                        break;
                     case 1:
-                        bnView.setSelectedItemId(R.id.action_member);
-                        break;
-                    case 2:
                         bnView.setSelectedItemId(R.id.action_rank);
                         break;
-                    case 3:
+                    case 2:
                         bnView.setSelectedItemId(R.id.action_profile);
                         break;
                 }
@@ -83,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
                             if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
                                 viewPager.setCurrentItem(0, true);
                             break;
-                        case R.id.action_member:
-                            if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
-                                viewPager.setCurrentItem(1, true);
-                            break;
+//                        case R.id.action_member:
+//                            if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
+//                                viewPager.setCurrentItem(1, true);
+//                            break;
                         case R.id.action_add:
 
                             if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager())) {
@@ -101,11 +103,11 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case R.id.action_rank:
                             if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
-                                viewPager.setCurrentItem(2, true);
+                                viewPager.setCurrentItem(1, true);
                             break;
                         case R.id.action_profile:
                             if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
-                                viewPager.setCurrentItem(3, true);
+                                viewPager.setCurrentItem(2, true);
                             break;
                     }
                     return true;
@@ -128,13 +130,13 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 bnView.setSelectedItemId(R.id.action_home);
                 break;
+//            case 1:
+//                bnView.setSelectedItemId(R.id.action_member);
+//                break;
             case 1:
-                bnView.setSelectedItemId(R.id.action_member);
-                break;
-            case 2:
                 bnView.setSelectedItemId(R.id.action_rank);
                 break;
-            case 3:
+            case 2:
                 bnView.setSelectedItemId(R.id.action_profile);
                 break;
         }
