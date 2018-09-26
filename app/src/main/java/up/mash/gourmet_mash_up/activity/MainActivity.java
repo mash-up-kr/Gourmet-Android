@@ -85,10 +85,14 @@ public class MainActivity extends AppCompatActivity {
                             if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
                                 viewPager.setCurrentItem(0, true);
                             break;
-//                        case R.id.action_member:
-//                            if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
-//                                viewPager.setCurrentItem(1, true);
-//                            break;
+                        case R.id.action_rank:
+                            if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
+                                viewPager.setCurrentItem(1, true);
+                            break;
+                        case R.id.action_profile:
+                            if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
+                                viewPager.setCurrentItem(2, true);
+                            break;
                         case R.id.action_add:
 
                             if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager())) {
@@ -100,14 +104,6 @@ public class MainActivity extends AppCompatActivity {
                                 viewPager.setCurrentItem(fragmentBackStack.pop());
                                 setSelectedItemId(fragmentBackStack.pop());
                             }
-                            break;
-                        case R.id.action_rank:
-                            if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
-                                viewPager.setCurrentItem(1, true);
-                            break;
-                        case R.id.action_profile:
-                            if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
-                                viewPager.setCurrentItem(2, true);
                             break;
                     }
                     return true;
@@ -130,9 +126,6 @@ public class MainActivity extends AppCompatActivity {
             case 0:
                 bnView.setSelectedItemId(R.id.action_home);
                 break;
-//            case 1:
-//                bnView.setSelectedItemId(R.id.action_member);
-//                break;
             case 1:
                 bnView.setSelectedItemId(R.id.action_rank);
                 break;

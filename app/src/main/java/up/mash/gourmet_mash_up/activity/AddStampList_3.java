@@ -67,6 +67,11 @@ public class AddStampList_3 extends AppCompatActivity {
         });
 
         enter_next.setOnClickListener(v -> {
+            if (iv_bad.isChecked())
+                Stamp.getIntance().setGood(false);
+            if (iv_good.isChecked())
+                Stamp.getIntance().setGood(true);
+
             startActivity(new Intent(AddStampList_3.this, MainActivity.class));
             Stamp.getIntance().clear();
             finish();

@@ -4,28 +4,29 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-//import up.mash.gourmet_mash_up.fragment.MemberFragment;
+import up.mash.gourmet_mash_up.fragment.MemberFragment;
 import up.mash.gourmet_mash_up.fragment.MyPageFragment;
-import up.mash.gourmet_mash_up.fragment.ProfileFragment;
 import up.mash.gourmet_mash_up.fragment.RankFragment;
+
+//import up.mash.gourmet_mash_up.fragment.MemberFragment;
 
 
 public class ViewPageAdapter extends FragmentPagerAdapter {
 
     private static final String TAG = ViewPageAdapter.class.getSimpleName();
 
-    private final MyPageFragment homeFragment;
+    private final MemberFragment homeFragment;
 //    private final MemberFragment memberFragment;
     private final RankFragment rankFragment;
-    private final ProfileFragment profileFragment;
+    private final MyPageFragment profileFragment;
 
     public ViewPageAdapter(FragmentManager fm) {
         super(fm);
 
-        homeFragment = MyPageFragment.newInstance();
+        homeFragment = MemberFragment.newInstance();
 //        memberFragment = MemberFragment.newInstance();
         rankFragment = RankFragment.newInstance(null, null);
-        profileFragment = new ProfileFragment();
+        profileFragment = MyPageFragment.newInstance();
     }
 
     @Override
