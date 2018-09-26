@@ -21,8 +21,9 @@
             app:srcCompat="@drawable/food_ex" />
 
         <RelativeLayout
-            android:layout_width="208dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
             android:orientation="vertical"
             android:paddingLeft="8dp">
 
@@ -32,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:text="상호명"
                 android:textColor="#444444"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/menu_name"
@@ -52,7 +53,7 @@
                 android:layout_below="@+id/menu_name"
                 android:text="위치"
                 android:textColor="#9b9b9b"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/like_percentage"
@@ -63,12 +64,12 @@
                 android:layout_marginBottom="6dp"
                 android:text="취향저격 %"
                 android:textColor="#4a90e2"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/like_dislike"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginBottom="6dp"

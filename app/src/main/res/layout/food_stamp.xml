@@ -31,9 +31,11 @@
                 android:id="@+id/trade_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:text="상호명"
                 android:textColor="#444444"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/menu_name"
@@ -53,7 +55,7 @@
                 android:layout_below="@+id/menu_name"
                 android:text="위치"
                 android:textColor="#9b9b9b"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/stamp"

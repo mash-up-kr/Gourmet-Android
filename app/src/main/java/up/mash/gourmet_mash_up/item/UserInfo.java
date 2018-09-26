@@ -11,6 +11,9 @@ public class UserInfo implements Serializable {
     private String id;
     private String pw;
     private String intro;
+    private int follower;
+    private int stamp;
+    private int rank;
 
     public String getId() {
         return id;
@@ -34,5 +37,29 @@ public class UserInfo implements Serializable {
 
     public void setIntro(String intro) {
         this.intro = intro;
+    }
+
+    public int getStamp() {
+        return stamp;
+    }
+
+    public void setStamp(int stamp) {
+        this.stamp = stamp;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public int getFollower() {
+        return follower;
+    }
+
+    public void setFollower(int follower) {
+        this.follower = follower;
     }
 }

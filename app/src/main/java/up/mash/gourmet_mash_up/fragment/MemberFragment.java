@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.adapter.MemberRecyclerViewAdapter;
+import up.mash.gourmet_mash_up.adapter.NewsFeedRecyclerViewAdapter;
 import up.mash.gourmet_mash_up.item.FoodItem;
 import up.mash.gourmet_mash_up.item.ItemwithType;
 import up.mash.gourmet_mash_up.item.UserIdItem;
@@ -24,9 +25,9 @@ public class MemberFragment extends Fragment {
 
     RecyclerView recyclerView;
 
-    MemberRecyclerViewAdapter memberRecyclerViewAdapter;
+    NewsFeedRecyclerViewAdapter newsFeedRecyclerViewAdapter;
 
-    public ArrayList<ItemwithType> arrayListOfItems;
+    public ArrayList<Integer> arrayListOfContent;
 
     public static MemberFragment newInstance() {
         return new MemberFragment();
@@ -44,6 +45,7 @@ public class MemberFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_member, container, false);
     }
 
@@ -53,39 +55,31 @@ public class MemberFragment extends Fragment {
 
         initArrayListOfItems();
 
-        memberRecyclerViewAdapter = new MemberRecyclerViewAdapter(arrayListOfItems);
-        recyclerView = view.findViewById(R.id.member_recycler_view);
-        recyclerView.setAdapter(memberRecyclerViewAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        newsFeedRecyclerViewAdapter = new NewsFeedRecyclerViewAdapter(arrayListOfContent);
+        recyclerView = view.findViewById(R.id.news_feed_recycler_view);
+        recyclerView.setAdapter(newsFeedRecyclerViewAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
     }
 
     public void initArrayListOfItems() {
-        arrayListOfItems = new ArrayList<>();
+        arrayListOfContent = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
-            if (i % 2 == 0) {
-                UserIdItem userIdItem = new UserIdItem();
+        for (int i = 0; i < 31; i++) {
 
-                userIdItem.setUserId("@userId" + (i / 2 + 1));
-
-                arrayListOfItems.add(userIdItem);
-
-                Log.e("create", "userId : " + userIdItem.getUserId());
-            } else {
-                FoodItem foodItem = new FoodItem();
-
-                foodItem.setImageLink("food_ex.png");
-                foodItem.setTradeName("상호명" + (i / 2 + 1));
-                foodItem.setMenuName("메뉴명" + (i / 2 + 1));
-                foodItem.setLocationName("위치명" + (i / 2 + 1));
-                foodItem.setWish((i / 2) % 2 == 0);
-                foodItem.setLikeDislike(!((i / 2) % 2 == 0));
-
-                arrayListOfItems.add(foodItem);
-
-                Log.e("create", "menuName : " + foodItem.getMenuName());
-
+            switch( i%4 ) {
+                case 0:
+                    arrayListOfContent.add(R.drawable.food_ex);
+                    break;
+                case 1:
+                    arrayListOfContent.add(R.drawable.food_ex2);
+                    break;
+                case 2:
+                    arrayListOfContent.add(R.drawable.food_ex3);
+                    break;
+                case 3:
+                    arrayListOfContent.add(R.drawable.food_ex4);
+                    break;
             }
         }
     }
