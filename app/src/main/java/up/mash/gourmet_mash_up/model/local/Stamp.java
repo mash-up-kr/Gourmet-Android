@@ -5,6 +5,8 @@ public class Stamp {
     private String where;
     private String what;
     private String how;
+    private boolean good;
+
 
     private static Stamp instance;
 
@@ -19,12 +21,14 @@ public class Stamp {
         this.where = "";
         this.what = "";
         this.how = "";
+        this.good = false;
     }
 
     public void clear() {
         this.where = "";
         this.what = "";
         this.how = "";
+        this.good = false;
     }
 
     public String getWhere() {
@@ -49,5 +53,13 @@ public class Stamp {
 
     public void setHow(String address) {
         this.how = address;
+    }
+
+    public boolean isGood() {
+        return good;
+    }
+
+    public void setGood(boolean good) {
+        this.good = good;
     }
 }

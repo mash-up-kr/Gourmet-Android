@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.model.local.Stamp;
@@ -20,6 +21,7 @@ public class AddStampList_3 extends AppCompatActivity {
     private EditText et_contents_stamp_wishList;
     private Button enter_next;
     private View select_containar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +35,38 @@ public class AddStampList_3 extends AppCompatActivity {
         et_contents_stamp_wishList.setVisibility(View.GONE);
 
         select_containar = findViewById(R.id.select_container_view);
-        ImageView iv_good = select_containar.findViewById(R.id.good);
-        ImageView iv_bac = select_containar.findViewById(R.id.bad);
+        ToggleButton iv_good = select_containar.findViewById(R.id.good);
+        ToggleButton iv_bad = select_containar.findViewById(R.id.bad);
 
+
+        iv_good.setBackgroundResource(R.drawable.not_active_good_stamp);
+        iv_bad.setBackgroundResource(R.drawable.not_active_bad_stamp);
+        iv_good.setOnClickListener((View v) -> {
+            if (iv_good.isChecked()) {
+                if (iv_bad.isChecked()) {
+                    iv_bad.setChecked(false);
+                    iv_bad.setBackgroundResource(R.drawable.not_active_bad_stamp);
+                }
+                iv_good.setBackgroundResource(R.drawable.good_stamp);
+            } else {
+                iv_good.setBackgroundResource(R.drawable.not_active_good_stamp);
+            }
+        });
+
+
+        iv_bad.setOnClickListener(v -> {
+            if (iv_bad.isChecked()) {
+                if (iv_good.isChecked()) {
+                    iv_good.setChecked(false);
+                    iv_good.setBackgroundResource(R.drawable.not_active_good_stamp);
+                }
+                iv_bad.setBackgroundResource(R.drawable.bad_stamp);
+            } else {
+                iv_bad.setBackgroundResource(R.drawable.not_active_bad_stamp);
+            }
+        });
 
         enter_next.setOnClickListener(v -> {
-            //TODO 인터넷 연결
             startActivity(new Intent(AddStampList_3.this, MainActivity.class));
             Stamp.getIntance().clear();
             finish();
