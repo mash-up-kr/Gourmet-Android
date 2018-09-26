@@ -6,16 +6,12 @@
         android:icon="@drawable/ic_home"
         android:title="@string/bottom_title_home"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_member"
-        android:icon="@drawable/ic_member"
-        android:title="@string/bottom_title_member"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_add"
-        android:icon="@drawable/ic_plus"
-        app:showAsAction="ifRoom"
-        android:title="" />
+    <!--<item-->
+        <!--android:id="@+id/action_member"-->
+        <!--android:icon="@drawable/ic_member"-->
+        <!--android:title="@string/bottom_title_member"-->
+        <!--app:showAsAction="ifRoom" />-->
+
     <item
         android:id="@+id/action_rank"
         android:icon="@drawable/ic_ranking"
@@ -26,4 +22,9 @@
         android:icon="@drawable/ic_profile"
         app:showAsAction="always"
         android:title="@string/bottom_title_profile" />
+    <item
+        android:id="@+id/action_add"
+        android:icon="@drawable/ic_plus"
+        app:showAsAction="ifRoom"
+        android:title="" />
 </menu>
