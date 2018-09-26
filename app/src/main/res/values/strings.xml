@@ -60,4 +60,9 @@
     <string name="Log_in">로그인</string>
     <string name="Ranking">Ranking</string>
     <string name="follower">팔로워</string>
+    <string name="signup">회원가입</string>
+    <string name="if_you_already_signup">이미 회원가입을 하셨다면</string>
+    <string name="here">여기</string>
+    <string name="click_here">를 눌러주세요</string>
+    <string name="codachaya">Codachaya</string>
 </resources>

@@ -31,7 +31,7 @@
         android:paddingLeft="90dp"
         android:paddingRight="90dp"
         android:paddingTop="20dp"
-        android:text="회원가입"
+        android:text="@string/signup"
         android:textColor="#ffffff"
         android:textSize="20sp" />
 
@@ -45,21 +45,21 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="이미 회원가입을 하셨다면" />
+            android:text="@string/if_you_already_signup" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="enterSignInActivity"
-            android:text="여기"
+            android:text="@string/here"
             android:textColor="#00adb5" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="를 눌러주세요" />
+            android:text="@string/click_here" />
 
     </LinearLayout>
 
@@ -69,6 +69,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="60dp"
-        android:text="Codachaya"
+        android:text="@string/codachaya"
         android:textColor="#b5b5b5" />
 </LinearLayout>
