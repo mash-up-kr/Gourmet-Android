@@ -1,5 +1,6 @@
 package up.mash.gourmet_mash_up.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,7 +29,7 @@ public class MyStampFragment extends Fragment {
     RecyclerView myStampRecyclerView;
     ArrayList<FoodStamp> arrayListofStamp;
 
-    public static MyStampFragment newInstance() {
+    public static MyStampFragment newInstance(Context context) {
         return new MyStampFragment();
     }
 

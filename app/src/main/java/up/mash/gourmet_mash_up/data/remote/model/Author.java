@@ -10,6 +10,11 @@ public class Author {
     private int followingCount;
     private int followerCount;
     private boolean isFollowing;
+    private boolean isPublic;
+
+    public boolean isPublic() {
+        return isPublic;
+    }
 
     public int getId() {
         return id;

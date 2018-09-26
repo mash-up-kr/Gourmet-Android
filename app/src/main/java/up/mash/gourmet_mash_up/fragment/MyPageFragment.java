@@ -49,24 +49,16 @@ public class MyPageFragment extends Fragment {
 
         toolbar = view.findViewById(R.id.my_page_toolbar);
 
-//        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
-//        setHasOptionsMenu(true);
-         collapsingToolbarLayout = view.findViewById(R.id.my_page_collapse);
-
-//        profileImage = view.findViewById(R.id.profile_image);
-//        profileImage.setBackground(new ShapeDrawable(new OvalShape()));
-
-//        if (Build.VERSION.SDK_INT >= 21) profileImage.setClipToOutline(true);
+        collapsingToolbarLayout = view.findViewById(R.id.my_page_collapse);
 
         tabLayout = view.findViewById(R.id.my_tab_layout);
 
         tabLayout.addTab(tabLayout.newTab().setText("위시리스트 (000)"));
         tabLayout.addTab(tabLayout.newTab().setText("스탬프 (000)"));
-        //tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         viewPager = view.findViewById(R.id.my_view_pager);
 
-        MyPageTabPagerAdapter myPageTabPagerAdapter = new MyPageTabPagerAdapter(getChildFragmentManager());
+        MyPageTabPagerAdapter myPageTabPagerAdapter = new MyPageTabPagerAdapter(getContext(), getChildFragmentManager());
         viewPager.setAdapter(myPageTabPagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -94,7 +86,7 @@ public class MyPageFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
     }

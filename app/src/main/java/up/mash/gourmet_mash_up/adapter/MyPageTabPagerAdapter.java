@@ -1,5 +1,6 @@
 package up.mash.gourmet_mash_up.adapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -19,11 +20,11 @@ public class MyPageTabPagerAdapter extends FragmentStatePagerAdapter {
     private final MyWishFragment myWishFragment;
     private final MyStampFragment myStampFragment;
 
-    public MyPageTabPagerAdapter(FragmentManager fragmentManager) {
+    public MyPageTabPagerAdapter(Context context, FragmentManager fragmentManager) {
         super(fragmentManager);
 
-        myWishFragment = MyWishFragment.newInstance();
-        myStampFragment = MyStampFragment.newInstance();
+        myWishFragment = MyWishFragment.newInstance(context);
+        myStampFragment = MyStampFragment.newInstance(context);
 
     }
 
