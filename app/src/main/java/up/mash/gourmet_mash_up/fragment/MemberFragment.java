@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.adapter.MemberRecyclerViewAdapter;
+import up.mash.gourmet_mash_up.adapter.NewsFeedRecyclerViewAdapter;
 import up.mash.gourmet_mash_up.item.FoodItem;
 import up.mash.gourmet_mash_up.item.ItemwithType;
 import up.mash.gourmet_mash_up.item.UserIdItem;
@@ -24,7 +24,7 @@ public class MemberFragment extends Fragment {
 
     RecyclerView recyclerView;
 
-    MemberRecyclerViewAdapter memberRecyclerViewAdapter;
+    NewsFeedRecyclerViewAdapter memberRecyclerViewAdapter;
 
     public ArrayList<ItemwithType> arrayListOfItems;
 
@@ -53,8 +53,8 @@ public class MemberFragment extends Fragment {
 
         initArrayListOfItems();
 
-        memberRecyclerViewAdapter = new MemberRecyclerViewAdapter(arrayListOfItems);
-        recyclerView = view.findViewById(R.id.member_recycler_view);
+        memberRecyclerViewAdapter = new NewsFeedRecyclerViewAdapter(arrayListOfItems);
+        recyclerView = view.findViewById(R.id.news_feed_recycler_view);
         recyclerView.setAdapter(memberRecyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
