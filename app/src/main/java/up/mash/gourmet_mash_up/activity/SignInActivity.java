@@ -64,7 +64,7 @@ public class SignInActivity extends AppCompatActivity {
 
 //            BaseNetworkRequestModule.requestLogIn(id, password, new Callback<LoginRes>() {
 //                @Override
-//                public void onResponse(@NonNull Call<LoginRes> call, @NonNull Response<LoginRes> response) {
+//                public void onResponse(@NonNull Call<TokenModel> call, @NonNull Response<TokenModel> response) {
 //                    if (response.isSuccessful()) {
 //                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
 //                        finish();

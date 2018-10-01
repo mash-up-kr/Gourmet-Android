@@ -10,9 +10,15 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import up.mash.gourmet_mash_up.data.remote.model.Author;
-import up.mash.gourmet_mash_up.data.remote.model.login.LoginReq;
-import up.mash.gourmet_mash_up.data.remote.model.login.LoginRes;
+import retrofit2.http.Query;
+import up.mash.gourmet_mash_up.data.remote.model.BaseListModelWithReviewModel;
+import up.mash.gourmet_mash_up.data.remote.model.BaseListModelWithWishModel;
+import up.mash.gourmet_mash_up.data.remote.model.ReviewModel;
+import up.mash.gourmet_mash_up.data.remote.model.ReviewPostCommand;
+import up.mash.gourmet_mash_up.data.remote.model.UserModel;
+import up.mash.gourmet_mash_up.data.remote.model.WishModel;
+import up.mash.gourmet_mash_up.data.remote.model.login.SignInCommand;
+import up.mash.gourmet_mash_up.data.remote.model.login.TokenModel;
 import up.mash.gourmet_mash_up.data.remote.model.login.RegisterRes;
 
 public interface GourmetRESTClient {
@@ -33,26 +39,51 @@ public interface GourmetRESTClient {
      */
     @Headers("Content-Type: application/json")
     @POST("/api/auth/register")
-    Call<RegisterRes> registerUser(@Body LoginReq UserRegisterBody);
+    Call<RegisterRes> registerUser(@Body SignInCommand UserRegisterBody);
 
     @Headers("Authorization: Basic Z291cm1ldC1jbGllbnQ6c2VjcmV0")
     @POST("/api/oauth/token")
-    Call<LoginRes> login(@Field("username") String userName,
-                         @Field("password") String password,
-                         @Field("grant_type") String grant_type);
+    Call<TokenModel> login(@Field("username") String userName,
+                           @Field("password") String password,
+                           @Field("grant_type") String grant_type);
 
     @GET("/api/me")
-    Call<Author> getMe(@Header("Authorization") String authorization);
+    Call<UserModel> getMe(@Header("Authorization") String authorization);
 
     @PUT("/api/me")
-    Call<Author> setMe(@Header("Authorization") String authorization);
+    Call<UserModel> setMe(@Header("Authorization") String authorization);
 
-    @GET("/api/me/stamps?count={count}&cursor={curosr}")
-    Call<Author> getStampes(@Path("count") int count, @Path("cursor") int curosr);
+    @GET("/api/me/stamps?page={page}&size={size}")
+    Call<BaseListModelWithReviewModel> getStampes(@Path("page") int count,
+                                                  @Path("size") int size);
 
-    @GET("/api/me/wishlist?count={count}&cursor={curosr}")
-    Call<Author> getWishlists(@Path("count") int count, @Path("cursor") int curosr);
+    @GET("/api/me/wishlist?page={page}&size={size}")
+    Call<BaseListModelWithWishModel> getWishlists(@Path("page") int count,
+                                                  @Path("size") int size);
 
-    @DELETE("/api/me/wishlist/{wishId}")
-    Call<Author> removeWishList(@Path("wishId") String id);
+    @Headers("Content-Type: application/json")
+    @POST("/review")
+    Call<ReviewModel> reviewPostCommand(@Body ReviewPostCommand command);
+
+    @GET("/review/{reviewId}")
+    Call<ReviewModel> getReview(@Path("reviewId") int id);
+
+    @POST("/review/{reviewId}/wish")
+    Call<WishModel> setWishList(@Path("reviewId") int id);
+
+    @GET("/user/{userId}")
+    Call<UserModel> getUser(@Path("userId") int userId);
+
+    @POST("/user/{userId}/follow")
+    Call<String> setFollowUser(@Path("userId") int userId);
+
+    @DELETE("/user/{userId}/follow")
+    Call<String> deleteFollowUser(@Path("userId") int userId);
+
+    @GET("/user/{userId}/stamps")
+    Call<BaseListModelWithReviewModel> getFollowUser(@Path("userId") int userId,
+                                                     @Query("count") int count,
+                                                     @Query("cursor") int cursor);
+
+
 }

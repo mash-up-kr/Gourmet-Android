@@ -9,8 +9,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import up.mash.gourmet_mash_up.BuildConfig;
 import up.mash.gourmet_mash_up.data.remote.api.GourmetRESTClient;
-import up.mash.gourmet_mash_up.data.remote.model.login.LoginReq;
-import up.mash.gourmet_mash_up.data.remote.model.login.LoginRes;
+import up.mash.gourmet_mash_up.data.remote.model.login.SignInCommand;
+import up.mash.gourmet_mash_up.data.remote.model.login.TokenModel;
 import up.mash.gourmet_mash_up.data.remote.model.login.RegisterRes;
 import up.mash.gourmet_mash_up.data.remote.util.ApiKeyInterceptor;
 import up.mash.gourmet_mash_up.data.remote.util.RequestResponseTimeInterceptor;
@@ -60,11 +60,11 @@ public class BaseNetworkRequestModule {
     }
 
     public static void requestRegisterUser(String id, String password, Callback<RegisterRes> callback) {
-        LoginReq req = new LoginReq(id, password);
+        SignInCommand req = new SignInCommand(id, password);
         getService().registerUser(req).enqueue(callback);
     }
 
-    public static void requestLogIn(String id, String password, Callback<LoginRes> callback) {
+    public static void requestLogIn(String id, String password, Callback<TokenModel> callback) {
         getService().login(id, password, "password").enqueue(callback);
     }
 }

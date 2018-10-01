@@ -27,9 +27,9 @@ public class StampList {
 
         private int id;
         private String stamp;
-        private Author author;
-        private Restaurant restaurant;
-        private Menu menu;
+        private UserModel mUserModel;
+        private RestaurantModel mRestaurantModel;
+        private MenuModel mMenuModel;
 
 
         public int getId() {
@@ -40,16 +40,16 @@ public class StampList {
             return stamp;
         }
 
-        public Author getAuthor() {
-            return author;
+        public UserModel getUserModel() {
+            return mUserModel;
         }
 
-        public Restaurant getRestaurant() {
-            return restaurant;
+        public RestaurantModel getRestaurantModel() {
+            return mRestaurantModel;
         }
 
-        public Menu getMenu() {
-            return menu;
+        public MenuModel getMenuModel() {
+            return mMenuModel;
         }
     }
 }
