@@ -1,7 +1,7 @@
 package up.mash.gourmet_mash_up.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.item.FoodStamp;
 import up.mash.gourmet_mash_up.item.FoodWish;
 
 /**
@@ -24,10 +23,10 @@ public class MyWishRecyclerViewAdapter extends RecyclerView.Adapter<MyWishViewHo
 
     public MyWishRecyclerViewAdapter(ArrayList<FoodWish> arrayListofItemInfos) {
         this.arrayListofItemInfos = arrayListofItemInfos;
-        Log.e("created", "my wish recycler view adapter created!");
     }
 
-    public MyWishViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @NonNull
+    public MyWishViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
@@ -35,7 +34,7 @@ public class MyWishRecyclerViewAdapter extends RecyclerView.Adapter<MyWishViewHo
     }
 
     @Override
-    public void onBindViewHolder(MyWishViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyWishViewHolder holder, int position) {
 
         FoodWish foodWish = arrayListofItemInfos.get(position);
 

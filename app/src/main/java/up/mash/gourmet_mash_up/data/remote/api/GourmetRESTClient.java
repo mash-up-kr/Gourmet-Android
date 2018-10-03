@@ -25,32 +25,23 @@ import up.mash.gourmet_mash_up.data.remote.model.login.RegisterRes;
 
 public interface GourmetRESTClient {
 
-
     /**
-     * User
-     */
-//    @GET("/user")
-//    Call<User> getUser(@Query("userid") String userid);
-
-//    @POST("/user/{userid}/follow")
-//    Call<User> setFollowUser();
-
-
-    /**
-     * Log in
+     * Auth-Controller
      */
     @Headers("Content-Type: application/json")
     @POST("/api/auth/register")
     Flowable<RegisterRes> registerUser(@Body SignInCommand UserRegisterBody);
 
-
     @FormUrlEncoded
     @Headers("Authorization: Basic Z291cm1ldC1jbGllbnQ6c2VjcmV0")
     @POST("/api/oauth/token")
     Flowable<TokenModel> login(@Field("username") String userName,
-                           @Field("password") String password,
-                           @Field("grant_type") String grant_type);
+                               @Field("password") String password,
+                               @Field("grant_type") String grant_type);
 
+    /**
+     * Me-Controller
+     */
     @GET("/api/me")
     Flowable<UserModel> getMe(@Header("Authorization") String authorization);
 
@@ -67,6 +58,9 @@ public interface GourmetRESTClient {
                                                       @Path("page") int count,
                                                       @Path("size") int size);
 
+    /**
+     * Review-Controller
+     */
     @Headers("Content-Type: application/json")
     @POST("/review")
     Call<ReviewModel> reviewPostCommand(@Body ReviewPostCommand command);
@@ -77,6 +71,9 @@ public interface GourmetRESTClient {
     @POST("/review/{reviewId}/wish")
     Call<WishModel> setWishList(@Path("reviewId") int id);
 
+    /**
+     * user-Controller
+     */
     @GET("/user/{userId}")
     Call<UserModel> getUser(@Path("userId") int userId);
 

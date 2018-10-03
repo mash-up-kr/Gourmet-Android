@@ -1,7 +1,7 @@
 package up.mash.gourmet_mash_up.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +23,10 @@ public class MyStampRecyclerViewAdapter extends RecyclerView.Adapter<MyStampView
 
     public MyStampRecyclerViewAdapter(ArrayList<FoodStamp> arrayListofItemInfos) {
         this.arrayListofStampInfos = arrayListofItemInfos;
-        Log.e("created", "my stamp recycler view adapter created!");
     }
 
-    public MyStampViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @NonNull
+    public MyStampViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
@@ -34,7 +34,7 @@ public class MyStampRecyclerViewAdapter extends RecyclerView.Adapter<MyStampView
     }
 
     @Override
-    public void onBindViewHolder(MyStampViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyStampViewHolder holder, int position) {
 
         FoodStamp foodStamp = arrayListofStampInfos.get(position);
 

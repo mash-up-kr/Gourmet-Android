@@ -1,7 +1,7 @@
 package up.mash.gourmet_mash_up.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +25,6 @@ public class MemberRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     public MemberRecyclerViewAdapter(ArrayList<ItemwithType> arrayListofItemInfos) {
         this.arrayListofItemInfos = arrayListofItemInfos;
-        Log.e("created", "member recycler view adapter created!");
     }
 
     class FoodItemViewHolder extends RecyclerView.ViewHolder {
@@ -59,7 +58,8 @@ public class MemberRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
         }
     }
 
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @NonNull
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
@@ -74,7 +74,7 @@ public class MemberRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ItemwithType itemwithType = arrayListofItemInfos.get(position);
 
         if (holder instanceof FoodItemViewHolder) {

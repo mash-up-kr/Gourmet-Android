@@ -15,6 +15,8 @@ import up.mash.gourmet_mash_up.fragment.MyWishFragment;
 
 public class MyPageTabPagerAdapter extends FragmentStatePagerAdapter {
 
+    private static final String TAG = MyPageTabPagerAdapter.class.getSimpleName();
+
     private int tabCount;
 
     private final MyWishFragment myWishFragment;
@@ -33,10 +35,10 @@ public class MyPageTabPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                Log.e("return", "return myWishFragment!!");
+                Log.e(TAG, "return myWishFragment!!");
                 return myWishFragment;
             case 1:
-                Log.e("return", "return myStampFragment!!");
+                Log.e(TAG, "return myStampFragment!!");
                 return myStampFragment;
         }
         return null;
