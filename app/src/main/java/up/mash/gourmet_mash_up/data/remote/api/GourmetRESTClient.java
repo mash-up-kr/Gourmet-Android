@@ -58,12 +58,14 @@ public interface GourmetRESTClient {
     Call<UserModel> setMe(@Header("Authorization") String authorization);
 
     @GET("/api/me/stamps?page={page}&size={size}")
-    Call<BaseListModelWithReviewModel> getStampes(@Path("page") int count,
-                                                  @Path("size") int size);
+    Flowable<BaseListModelWithReviewModel> getStampes(@Header("Authorization") String authorization,
+                                                      @Path("page") int count,
+                                                      @Path("size") int size);
 
     @GET("/api/me/wishlist?page={page}&size={size}")
-    Call<BaseListModelWithWishModel> getWishlists(@Path("page") int count,
-                                                  @Path("size") int size);
+    Flowable<BaseListModelWithWishModel> getWishlists(@Header("Authorization") String authorization,
+                                                      @Path("page") int count,
+                                                      @Path("size") int size);
 
     @Headers("Content-Type: application/json")
     @POST("/review")
@@ -88,6 +90,4 @@ public interface GourmetRESTClient {
     Call<BaseListModelWithReviewModel> getFollowUser(@Path("userId") int userId,
                                                      @Query("count") int count,
                                                      @Query("cursor") int cursor);
-
-
 }
