@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +21,6 @@ import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.adapter.MyWishRecyclerViewAdapter;
 import up.mash.gourmet_mash_up.item.FoodWish;
 
-/**
- * Created by derba on 2018-08-11.
- */
 
 public class MyWishFragment extends Fragment {
 
@@ -108,8 +104,6 @@ public class MyWishFragment extends Fragment {
             foodWish.setLike_percentage((int) (Math.random() * 100));
 
             arrayListOfFood.add(foodWish);
-
-            Log.e("create", "menuName : " + foodWish.getMenuName());
         }
     }
 }

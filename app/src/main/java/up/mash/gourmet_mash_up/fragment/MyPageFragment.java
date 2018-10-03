@@ -1,6 +1,9 @@
 package up.mash.gourmet_mash_up.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -16,21 +19,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.request.RequestOptions;
+
+import java.util.Locale;
 
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.adapter.MyPageTabPagerAdapter;
-
-/**
- * Created by derba on 2018-08-11.
- */
+import up.mash.gourmet_mash_up.app.GlideApp;
+import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
+import up.mash.gourmet_mash_up.data.remote.model.UserModel;
 
 public class MyPageFragment extends Fragment {
 
+    private static final String TAG = "MyPageFragment";
     ImageView profileImage;
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager viewPager;
+    String user_token;
     CollapsingToolbarLayout collapsingToolbarLayout;
 
     public static MyPageFragment newInstance() {
@@ -40,8 +49,11 @@ public class MyPageFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
+    @SuppressLint("CheckResult")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,13 +62,44 @@ public class MyPageFragment extends Fragment {
         collapsingToolbarLayout = view.findViewById(R.id.my_page_collapse);
         viewPager = view.findViewById(R.id.my_view_pager);
         tabLayout = view.findViewById(R.id.my_tab_layout);
-
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.addTab(tabLayout.newTab().setText("위시리스트"));
         tabLayout.addTab(tabLayout.newTab().setText("스탬프"));
 
-        MyPageTabPagerAdapter myPageTabPagerAdapter = new MyPageTabPagerAdapter(getContext(), getChildFragmentManager(),2);
+        View detailLayout = view.findViewById(R.id.my_profile_detail_layout);
+        ImageView profileImage = detailLayout.findViewById(R.id.profile_image);
+        TextView profileMyLank = detailLayout.findViewById(R.id.profile_my_rank);
+        TextView profileMyId = detailLayout.findViewById(R.id.profile_my_id);
+        TextView profileMyName = detailLayout.findViewById(R.id.profile_my_name);
+        TextView profileMyFollwerNumber = detailLayout.findViewById(R.id.profile_my_follower_number);
+        TextView profileMyFollowingNumber = detailLayout.findViewById(R.id.profile_my_following_number);
+        TextView profileIntro = detailLayout.findViewById(R.id.profile_my_intro);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        user_token = preferences.getString("auth_token", "");
+
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.placeholder(R.drawable.bronz);
+        requestOptions.error(R.drawable.bronz);
+        GourmatRestManager
+                .getMe(user_token)
+                .subscribe((UserModel author) -> {
+                            profileMyLank.setText(String.format(Locale.KOREAN, "랭킹 %d위", author.getId()));
+                            profileMyName.setText(author.getUsername());
+                            profileIntro.setText(author.getIntroduce());
+                            profileMyFollowingNumber.setText(String.format(Locale.KOREAN, "%3d", author.getFollowingCount()));
+                            profileMyFollwerNumber.setText(String.format(Locale.KOREAN, "%3d", author.getFollowerCount()));
+
+                            GlideApp.with(this)
+                                    .setDefaultRequestOptions(requestOptions)
+                                    .load(author.getProfileImage())
+                                    .into(profileImage);
+                        },
+                        (t) -> Log.e(TAG, t.getMessage()),
+                        () -> Log.d(TAG, "getMyProfile Complete")
+                );
+        MyPageTabPagerAdapter myPageTabPagerAdapter = new MyPageTabPagerAdapter(getContext(), getChildFragmentManager(), 2);
         viewPager.setAdapter(myPageTabPagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -66,7 +109,6 @@ public class MyPageFragment extends Fragment {
                 viewPager.setCurrentItem(tab.getPosition());
                 Log.e("select", "select tab position : " + tab.getPosition());
                 Toast.makeText(getContext(), "selectr ta", Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
@@ -107,5 +149,10 @@ public class MyPageFragment extends Fragment {
         }
 
         return true;
+    }
+
+    public void bindingMyProfile(UserModel author, View detailLayout) {
+
+
     }
 }

@@ -2,11 +2,11 @@ package up.mash.gourmet_mash_up.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +15,7 @@ import java.util.ArrayList;
 
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.adapter.MyStampRecyclerViewAdapter;
-import up.mash.gourmet_mash_up.adapter.MyWishRecyclerViewAdapter;
 import up.mash.gourmet_mash_up.item.FoodStamp;
-import up.mash.gourmet_mash_up.item.FoodWish;
-
-/**
- * Created by derba on 2018-08-11.
- */
 
 public class MyStampFragment extends Fragment {
 
@@ -40,7 +34,7 @@ public class MyStampFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_stamp, container, false);
 
         initStampList();
@@ -50,13 +44,11 @@ public class MyStampFragment extends Fragment {
         myStampRecyclerView.setAdapter(myStampRecyclerViewAdapter);
 
         myStampRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
-
         return view;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
     }
@@ -74,7 +66,7 @@ public class MyStampFragment extends Fragment {
 
             arrayListofStamp.add(foodStamp);
 
-            Log.e("create", "menuName : " + foodStamp.getMenuName());
+//            Log.e("create", "menuName : " + foodStamp.getMenuName());
         }
     }
 }
