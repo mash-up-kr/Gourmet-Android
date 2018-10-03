@@ -8,12 +8,17 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/my_page_appbar"
         android:layout_width="match_parent"
-        android:layout_height="256dp">
+        android:layout_height="240dp">
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/my_page_collapse"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <include
+                android:id="@+id/my_profile_detail_layout"
+                layout="@layout/item_my_profile"/>
+
             <android.support.design.widget.TabLayout
                 android:id="@+id/my_tab_layout"
                 android:layout_width="match_parent"

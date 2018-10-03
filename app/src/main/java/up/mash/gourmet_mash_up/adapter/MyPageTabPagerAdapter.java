@@ -27,6 +27,7 @@ public class MyPageTabPagerAdapter extends FragmentStatePagerAdapter {
         myWishFragment = MyWishFragment.newInstance(context);
         myStampFragment = MyStampFragment.newInstance(context);
     }
+
     @Override
     public Fragment getItem(int position) {
 
@@ -38,7 +39,6 @@ public class MyPageTabPagerAdapter extends FragmentStatePagerAdapter {
                 Log.e("return", "return myStampFragment!!");
                 return myStampFragment;
         }
-
         return null;
     }
 
