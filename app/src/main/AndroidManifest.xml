@@ -73,6 +73,9 @@
         <activity android:name=".activity.AddStampList_1" />
         <activity android:name=".activity.AddStampList_2" />
         <activity android:name=".activity.AddStampList_3" />
+        <meta-data
+            android:name="up.mash.gourmet_mash_up.app.MyAppGlideModule"
+            android:value="GlideModule"/>
     </application>
 
 </manifest>
