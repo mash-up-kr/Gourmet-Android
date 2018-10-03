@@ -1,9 +1,11 @@
 package up.mash.gourmet_mash_up.data.remote.api;
 
+import io.reactivex.Flowable;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -39,16 +41,18 @@ public interface GourmetRESTClient {
      */
     @Headers("Content-Type: application/json")
     @POST("/api/auth/register")
-    Call<RegisterRes> registerUser(@Body SignInCommand UserRegisterBody);
+    Flowable<RegisterRes> registerUser(@Body SignInCommand UserRegisterBody);
 
+
+    @FormUrlEncoded
     @Headers("Authorization: Basic Z291cm1ldC1jbGllbnQ6c2VjcmV0")
     @POST("/api/oauth/token")
-    Call<TokenModel> login(@Field("username") String userName,
+    Flowable<TokenModel> login(@Field("username") String userName,
                            @Field("password") String password,
                            @Field("grant_type") String grant_type);
 
     @GET("/api/me")
-    Call<UserModel> getMe(@Header("Authorization") String authorization);
+    Flowable<UserModel> getMe(@Header("Authorization") String authorization);
 
     @PUT("/api/me")
     Call<UserModel> setMe(@Header("Authorization") String authorization);

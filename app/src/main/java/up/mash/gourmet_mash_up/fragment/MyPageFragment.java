@@ -47,18 +47,16 @@ public class MyPageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my_page, container, false);
 
-        toolbar = view.findViewById(R.id.my_page_toolbar);
-
         collapsingToolbarLayout = view.findViewById(R.id.my_page_collapse);
-
+        viewPager = view.findViewById(R.id.my_view_pager);
         tabLayout = view.findViewById(R.id.my_tab_layout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("위시리스트 (000)"));
-        tabLayout.addTab(tabLayout.newTab().setText("스탬프 (000)"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        tabLayout.addTab(tabLayout.newTab().setText("위시리스트"));
+        tabLayout.addTab(tabLayout.newTab().setText("스탬프"));
 
-        viewPager = view.findViewById(R.id.my_view_pager);
-
-        MyPageTabPagerAdapter myPageTabPagerAdapter = new MyPageTabPagerAdapter(getContext(), getChildFragmentManager());
+        MyPageTabPagerAdapter myPageTabPagerAdapter = new MyPageTabPagerAdapter(getContext(), getChildFragmentManager(),2);
         viewPager.setAdapter(myPageTabPagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 

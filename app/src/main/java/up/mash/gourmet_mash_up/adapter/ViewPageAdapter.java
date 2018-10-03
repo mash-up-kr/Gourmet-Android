@@ -16,7 +16,6 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
     private static final String TAG = ViewPageAdapter.class.getSimpleName();
 
     private final MemberFragment homeFragment;
-//    private final MemberFragment memberFragment;
     private final RankFragment rankFragment;
     private final MyPageFragment profileFragment;
 
@@ -24,7 +23,6 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
         super(fm);
 
         homeFragment = MemberFragment.newInstance();
-//        memberFragment = MemberFragment.newInstance();
         rankFragment = RankFragment.newInstance(null, null);
         profileFragment = MyPageFragment.newInstance();
     }
@@ -34,8 +32,6 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return homeFragment;
-//            case 1:
-//                return memberFragment;
             case 1:
                 return rankFragment;
             case 2:

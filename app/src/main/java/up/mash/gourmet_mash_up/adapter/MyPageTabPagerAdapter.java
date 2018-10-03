@@ -15,19 +15,18 @@ import up.mash.gourmet_mash_up.fragment.MyWishFragment;
 
 public class MyPageTabPagerAdapter extends FragmentStatePagerAdapter {
 
-    private int tabCount = 2;
+    private int tabCount;
 
     private final MyWishFragment myWishFragment;
     private final MyStampFragment myStampFragment;
 
-    public MyPageTabPagerAdapter(Context context, FragmentManager fragmentManager) {
+    public MyPageTabPagerAdapter(Context context, FragmentManager fragmentManager, int tabCount) {
         super(fragmentManager);
 
+        this.tabCount = tabCount;
         myWishFragment = MyWishFragment.newInstance(context);
         myStampFragment = MyStampFragment.newInstance(context);
-
     }
-
     @Override
     public Fragment getItem(int position) {
 

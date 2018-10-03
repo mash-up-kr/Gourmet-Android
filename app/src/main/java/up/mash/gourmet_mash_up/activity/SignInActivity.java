@@ -1,10 +1,15 @@
 package up.mash.gourmet_mash_up.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,15 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import up.mash.gourmet_mash_up.R;
+import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
 
 import static android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD;
 
-/**
- * Created by derba on 2018-08-24.
- */
-
 public class SignInActivity extends AppCompatActivity {
 
+    private static final String TAG = SignInActivity.class.getSimpleName();
     TextView mainText;
     TextView subText;
     TextView subText2;
@@ -49,7 +52,7 @@ public class SignInActivity extends AppCompatActivity {
 
         button = findViewById(R.id.enterNext);
         button.setText(R.string.Log_in);
-        button.setOnClickListener(v -> {
+        button.setOnClickListener((View v) -> {
 
             String id = inputText.getText().toString();
             String password = inputText.getText().toString();
@@ -58,26 +61,34 @@ public class SignInActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            startActivity(new Intent(SignInActivity.this, MainActivity.class));
-            finish();
-//
 
-//            BaseNetworkRequestModule.requestLogIn(id, password, new Callback<LoginRes>() {
-//                @Override
-//                public void onResponse(@NonNull Call<TokenModel> call, @NonNull Response<TokenModel> response) {
-//                    if (response.isSuccessful()) {
-//                        startActivity(new Intent(SignInActivity.this, MainActivity.class));
-//                        finish();
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(@NonNull Call<LoginRes> call, @NonNull Throwable t) {
-//
-//                }
-//            });
+            GourmatRestManager
+                    .logInByUser(id, password)
+                    .subscribe((authObject) -> {
+                                if (setAuthToken(getApplicationContext(), authObject.getAccessToken())) {
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            },
+                            (t) -> Log.e(TAG, t.getMessage()),
+                            () -> Log.d(TAG, "AuthComplete")
+                    );
+            //TODO AccountManager 사용 고려하고 싶으나 ㅠㅠㅠ https://www.pilanites.com/android-account-manager/
+            // https://medium.com/@zpcat/android-account-manager-c08404cbb112
         });
     }
+
+    private boolean setAuthToken(Context context, String auth) {
+        if (!TextUtils.isEmpty(auth)) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("auth_token", auth);
+            editor.commit();
+            return true;
+        }
+        return false;
+    }
+
+
 }

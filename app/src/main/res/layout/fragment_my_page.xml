@@ -9,23 +9,18 @@
         android:id="@+id/my_page_appbar"
         android:layout_width="match_parent"
         android:layout_height="256dp">
-
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/my_page_collapse"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:expandedTitleGravity="top"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
             <android.support.design.widget.TabLayout
                 android:id="@+id/my_tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="bottom"
-                app:tabContentStart="72dp"
                 app:tabIndicatorHeight="2dp"
-                app:tabMode="scrollable" />
-
+                />
             <android.support.v7.widget.Toolbar
                 android:id="@+id/my_page_toolbar"
                 android:layout_width="match_parent"

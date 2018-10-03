@@ -1,11 +1,14 @@
 package up.mash.gourmet_mash_up.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +21,10 @@ import up.mash.gourmet_mash_up.adapter.NewsFeedRecyclerViewAdapter;
 
 public class MemberFragment extends Fragment {
 
+    private static final String TAG = MemberFragment.class.getSimpleName();
+
     RecyclerView recyclerView;
-
     NewsFeedRecyclerViewAdapter memberRecyclerViewAdapter;
-
     public ArrayList<Object> arrayListOfItems;
 
     public static MemberFragment newInstance() {
@@ -30,12 +33,16 @@ public class MemberFragment extends Fragment {
 
     public MemberFragment() {
         super();
-
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String token = preferences.getString("auth_token", "");
+        Log.d(TAG, token);
+
     }
 
     @Override
@@ -52,7 +59,7 @@ public class MemberFragment extends Fragment {
         memberRecyclerViewAdapter = new NewsFeedRecyclerViewAdapter(arrayListOfItems);
         recyclerView = view.findViewById(R.id.news_feed_recycler_view);
         recyclerView.setAdapter(memberRecyclerViewAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
     }
 
@@ -61,7 +68,7 @@ public class MemberFragment extends Fragment {
 
         for (int i = 0; i < 31; i++) {
 
-            switch( i%4 ) {
+            switch (i % 4) {
                 case 0:
                     arrayListOfItems.add(R.drawable.food_ex);
                     break;

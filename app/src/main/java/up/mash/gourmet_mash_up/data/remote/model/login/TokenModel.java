@@ -7,12 +7,16 @@ public class TokenModel {
     /**
      * Success
      */
-    @SerializedName("accessToken")
+    @SerializedName("access_token")
     private String accessToken;
-    @SerializedName("refreshToken")
+    @SerializedName("token_type")
+    private String tokenType;
+    @SerializedName("refresh_token")
     private String refreshToken;
-    @SerializedName("expiresIn")
-    private long expiresIn;
+    @SerializedName("expires_in")
+    private int expiresIn;
+    @SerializedName("scope")
+    private String scope;
 
     /**
      * Fail
@@ -26,12 +30,20 @@ public class TokenModel {
         return accessToken;
     }
 
+    public String getTokenType() {
+        return tokenType;
+    }
+
     public String getRefreshToken() {
         return refreshToken;
     }
 
-    public long getExpiresIn() {
+    public int getExpiresIn() {
         return expiresIn;
+    }
+
+    public String getScope() {
+        return scope;
     }
 
     public int getCode() {

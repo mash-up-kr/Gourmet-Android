@@ -3,14 +3,12 @@ package up.mash.gourmet_mash_up.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -18,24 +16,23 @@ import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.listener.OnCheckedListener;
 
+import org.reactivestreams.Subscription;
+
 import java.io.File;
 
+import io.reactivex.FlowableSubscriber;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.data.remote.BaseNetworkRequestModule;
-import up.mash.gourmet_mash_up.data.remote.model.login.RegisterRes;
+import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
+import up.mash.gourmet_mash_up.data.remote.model.login.SignInCommand;
 import up.mash.gourmet_mash_up.item.UserInfo;
 import up.mash.gourmet_mash_up.util.ActivityConstants;
 import up.mash.gourmet_mash_up.util.Glide4Engine;
 
 /**
- * Created by derba on 2018-08-24.
+ * 회원가입 완료페이지
  */
-
 public class SignUpPrActivity extends AppCompatActivity {
 
     final static String TAG = SignUpPrActivity.class.getSimpleName();
@@ -56,26 +53,38 @@ public class SignUpPrActivity extends AppCompatActivity {
 
         button = findViewById(R.id.enterNext);
         button.setText(R.string.complete);
-        button.setOnClickListener(v -> {
-            BaseNetworkRequestModule.requestRegisterUser(userInfo.getId(), userInfo.getPw(), new Callback<RegisterRes>() {
-                @Override
-                public void onResponse(@NonNull Call<RegisterRes> call, @NonNull Response<RegisterRes> response) {
-                    if (response.isSuccessful()) {
-                        Intent signIn = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(signIn);
-                        finish();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                }
+        button.setOnClickListener((View v) -> {
+            Log.d("TAG", userInfo.getId() + " //" + userInfo.getPw() + " // " + userInfo.getIntro());
+            SignInCommand body = new SignInCommand(userInfo.getId(), userInfo.getPw());
+            GourmatRestManager.setRegister(body)
+                    .subscribe(new FlowableSubscriber() {
+                        @Override
+                        public void onSubscribe(Subscription s) {
 
-                //https://stackoverflow.com/questions/21398598/how-to-post-raw-whole-json-in-the-body-of-a-retrofit-request
-                @Override
-                public void onFailure(@NonNull Call<RegisterRes> call, @NonNull Throwable t) {
-                    Toast.makeText(getApplicationContext(), "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                }
-            });
+                        }
 
+                        @Override
+                        public void onNext(Object o) {
+                            Log.d(TAG, "onNext");
+                        }
+
+                        @Override
+                        public void onError(Throwable t) {
+                            Log.d(TAG, "onError");
+
+                            Intent signIn = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(signIn);
+                            finish();
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            Log.d(TAG, "onComplete");
+                            Intent signIn = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(signIn);
+                            finish();
+                        }
+                    });
         });
     }
 

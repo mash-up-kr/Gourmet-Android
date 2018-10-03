@@ -17,7 +17,7 @@ import up.mash.gourmet_mash_up.R;
 
 public class NewsFeedRecyclerViewAdapter extends RecyclerView.Adapter<NewsFeedRecyclerViewAdapter.NewsFeedViewHolder> {
 
-    private ArrayList<Integer> listofNewsFeed;
+    private ArrayList listofNewsFeed;
 
     public NewsFeedRecyclerViewAdapter(ArrayList listofNewsFeed) {
         this.listofNewsFeed = listofNewsFeed;
@@ -34,7 +34,7 @@ public class NewsFeedRecyclerViewAdapter extends RecyclerView.Adapter<NewsFeedRe
 
     @Override
     public void onBindViewHolder(@NonNull NewsFeedViewHolder holder, int position) {
-        holder.imageView.setImageResource(listofNewsFeed.get(position));
+        holder.imageView.setImageResource((Integer) listofNewsFeed.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
