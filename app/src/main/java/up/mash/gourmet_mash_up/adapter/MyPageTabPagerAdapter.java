@@ -9,10 +9,6 @@ import android.util.Log;
 import up.mash.gourmet_mash_up.fragment.MyStampFragment;
 import up.mash.gourmet_mash_up.fragment.MyWishFragment;
 
-/**
- * Created by derba on 2018-08-11.
- */
-
 public class MyPageTabPagerAdapter extends FragmentStatePagerAdapter {
 
     private static final String TAG = MyPageTabPagerAdapter.class.getSimpleName();

@@ -11,7 +11,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +26,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.Locale;
 
+import timber.log.Timber;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.adapter.MyPageTabPagerAdapter;
 import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
@@ -95,8 +95,8 @@ public class MyPageFragment extends Fragment {
                                     .load(author.getProfileImage())
                                     .into(profileImage);
                         },
-                        (t) -> Log.e(TAG, t.getMessage()),
-                        () -> Log.d(TAG, "getMyProfile Complete")
+                        Timber::e,
+                        () -> Timber.d("getMyProfile Complete")
                 );
         MyPageTabPagerAdapter myPageTabPagerAdapter = new MyPageTabPagerAdapter(getContext(), getChildFragmentManager(), 2);
         viewPager.setAdapter(myPageTabPagerAdapter);
@@ -106,8 +106,7 @@ public class MyPageFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                Log.e("select", "select tab position : " + tab.getPosition());
-                Toast.makeText(getContext(), "selectr ta", Toast.LENGTH_SHORT).show();
+                Timber.e("select tab position : %s", tab.getPosition());
             }
 
             @Override
@@ -148,10 +147,5 @@ public class MyPageFragment extends Fragment {
         }
 
         return true;
-    }
-
-    public void bindingMyProfile(UserModel author, View detailLayout) {
-
-
     }
 }

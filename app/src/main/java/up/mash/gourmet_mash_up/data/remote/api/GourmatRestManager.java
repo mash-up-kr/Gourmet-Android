@@ -91,8 +91,8 @@ public class GourmatRestManager {
                                                             RequestBody price) {
         return mGourmetRESTClient
                 .addSingleWishList("Bearer " + auth, file, restaurant, address, menu, price)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread());
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io());
 
     }
 
@@ -105,7 +105,7 @@ public class GourmatRestManager {
                                                          RequestBody stamp) {
         return mGourmetRESTClient
                 .addSingleStamp("Bearer " + auth, file, restaurant, address, menu, comment, stamp)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread());
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io());
     }
 }

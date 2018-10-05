@@ -45,7 +45,6 @@ public class MemberFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
-
     }
 
     @Override
@@ -64,15 +63,14 @@ public class MemberFragment extends Fragment {
         Timber.d(token);
         recyclerView = view.findViewById(R.id.news_feed_recycler_view);
         arrayListOfItems = new ArrayList<>();
+
         memberRecyclerViewAdapter = new NewsFeedRecyclerViewAdapter(arrayListOfItems, mContext);
         recyclerView.setAdapter(memberRecyclerViewAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
         GourmatRestManager.getTotalWishLists(token)
                 .subscribe(
-                        (res) -> {
-                            memberRecyclerViewAdapter.updateReview(res);
-                        },
+                        (res) -> memberRecyclerViewAdapter.updateReview(res),
                         Timber::d,
                         () -> Timber.d("onTotalWIshList")
                 );
