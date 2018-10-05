@@ -9,8 +9,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+
+import java.io.File;
+
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.model.local.Stamp;
+import up.mash.gourmet_mash_up.data.local.Stamp;
+import up.mash.gourmet_mash_up.util.Glide4Engine;
 
 public class AddStampList_2 extends AppCompatActivity {
 
@@ -20,20 +27,30 @@ public class AddStampList_2 extends AppCompatActivity {
     private ImageView iv_picture_for_food;
     private EditText et_contents_stamp_wishList;
     private Button enter_next;
+    private File imageFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_wish_common);
 
-        init_common_stamp_wishlist();
+        init_common_stamp_wishList();
 
         tv_question_no.setText(R.string.q2);
         tv_ask_question.setText(R.string.what_will_you_want_to_eat);
 
         iv_picture_for_food.setVisibility(View.VISIBLE);
 
-        //TODO 갤러리로부터 이미지 가져오기.
+        iv_picture_for_food.setOnClickListener(v -> Matisse.from(AddStampList_2.this)
+                .choose(MimeType.ofImage(), false)
+                .maxSelectable(1)
+                .gridExpectedSize(
+                        getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
+                .thumbnailScale(0.85f)
+                .imageEngine(new Glide4Engine())
+                .originalEnable(true)
+                .maxOriginalSize(10)
+                .forResult(101));
 
         et_contents_stamp_wishList.setHint(R.string.hint_write_menu_name);
 
@@ -47,7 +64,7 @@ public class AddStampList_2 extends AppCompatActivity {
 
     }
 
-    public void init_common_stamp_wishlist() {
+    public void init_common_stamp_wishList() {
         iv_back_button = findViewById(R.id.back_button);
         tv_question_no = findViewById(R.id.tv_question_no);
         tv_ask_question = findViewById(R.id.tv_ask_question);
@@ -59,5 +76,17 @@ public class AddStampList_2 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101 && resultCode == RESULT_OK) {
+            imageFile = new File(Matisse.obtainPathResult(data).get(0));
+            Stamp.getIntance().setImageFile(imageFile);
+            Glide.with(AddStampList_2.this)
+                    .load(imageFile)
+                    .into(iv_picture_for_food);
+        }
     }
 }

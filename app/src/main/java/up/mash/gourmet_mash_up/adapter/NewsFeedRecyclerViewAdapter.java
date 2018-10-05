@@ -1,14 +1,19 @@
 package up.mash.gourmet_mash_up.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import timber.log.Timber;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.data.remote.model.ReviewModel;
 
@@ -16,9 +21,11 @@ import up.mash.gourmet_mash_up.data.remote.model.ReviewModel;
 public class NewsFeedRecyclerViewAdapter extends RecyclerView.Adapter<NewsFeedRecyclerViewAdapter.NewsFeedViewHolder> {
 
     private List<ReviewModel> listNewsFeeds;
+    private Context mContext;
 
-    public NewsFeedRecyclerViewAdapter(List<ReviewModel> listNewsFeeds) {
+    public NewsFeedRecyclerViewAdapter(List<ReviewModel> listNewsFeeds, Context context) {
         this.listNewsFeeds = listNewsFeeds;
+        this.mContext = context;
     }
 
     public void updateReview(List<ReviewModel> reviewModels) {
@@ -39,10 +46,16 @@ public class NewsFeedRecyclerViewAdapter extends RecyclerView.Adapter<NewsFeedRe
 
         if (position < listNewsFeeds.size()) {
             ReviewModel reviewModel = listNewsFeeds.get(position);
-//            holder.imageView.setImageResource(reviewModel.getMenuImages());
+
+            Timber.i(reviewModel.getReviewImageUrl());
+
+            Glide.with(mContext)
+                    .load(reviewModel.getReviewImageUrl())
+                    .into(holder.imageView);
             holder.setReview(reviewModel);
+
             holder.itemView.setOnClickListener(v -> {
-                //TODO 리뷰 보내기
+                Toast.makeText(mContext, "GG", Toast.LENGTH_SHORT).show();
             });
         }
 

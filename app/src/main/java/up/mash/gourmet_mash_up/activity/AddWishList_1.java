@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.model.local.WishList;
+import up.mash.gourmet_mash_up.data.local.WishList;
 
 public class AddWishList_1 extends AppCompatActivity {
 

@@ -9,13 +9,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import timber.log.Timber;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
 
@@ -24,18 +24,21 @@ import static android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD;
 public class SignInActivity extends AppCompatActivity {
 
     private static final String TAG = SignInActivity.class.getSimpleName();
+
     TextView mainText;
     TextView subText;
     TextView subText2;
     EditText inputText;
     EditText inputText2;
     Button button;
+    Context mContext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_common);
 
+        mContext = getApplicationContext();
         mainText = findViewById(R.id.main_text);
         mainText.setVisibility(View.GONE);
 
@@ -52,34 +55,38 @@ public class SignInActivity extends AppCompatActivity {
 
         button = findViewById(R.id.enterNext);
         button.setText(R.string.Log_in);
+
         button.setOnClickListener((View v) -> {
 
             String id = inputText.getText().toString();
             String password = inputText.getText().toString();
 
-            if (id.isEmpty() || password.isEmpty()) {
-                Toast.makeText(getApplicationContext(), "아이디 또는 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(id) || TextUtils.isEmpty(password)) {
+                Toast.makeText(mContext, "아이디 또는 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             GourmatRestManager
                     .logInByUser(id, password)
                     .subscribe((authObject) -> {
-                                if (setAuthToken(getApplicationContext(), authObject.getAccessToken())) {
+                                if (setAuthToken(mContext, authObject.getAccessToken())) {
 
-
-                                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-                                        //자기소개로
-                                        isFirstLogIn(getApplicationContext(), authObject.getAccessToken());
-                                        startActivity(new Intent(getApplicationContext(), SignUpInActivity.class));
+                                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+                                    String temp = preferences.getString("abc", "");
+                                    if (temp.equals("")) {
+                                        isFirstLogIn(mContext, authObject.getAccessToken());
+                                        startActivity(new Intent(mContext, SignUpInActivity.class));
                                     } else {
-                                        startActivity(new Intent(getApplicationContext(), PostMainActivity.class));
+                                        startActivity(new Intent(mContext, MainActivity.class));
                                         finish();
                                     }
+                                } else {
+                                    startActivity(new Intent(mContext, PostMainActivity.class));
+                                    finish();
+                                }
                             },
-                            (t) -> Log.e(TAG, t.getMessage()),
-                            () -> Log.d(TAG, "AuthComplete")
+                            Timber::d,
+                            () -> Timber.d("get_Auth_Complete")
                     );
         });
     }
@@ -95,12 +102,11 @@ public class SignInActivity extends AppCompatActivity {
         return false;
     }
 
-    private boolean isFirstLogIn(Context context, String auth) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("first", auth);
-            editor.apply();
-            return true;
+    private void isFirstLogIn(Context context, String auth) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("abc", auth);
+        editor.apply();
     }
 
 

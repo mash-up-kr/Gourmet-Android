@@ -2,10 +2,6 @@ package up.mash.gourmet_mash_up.item;
 
 import java.io.Serializable;
 
-/**
- * Created by derba on 2018-08-25.
- */
-
 public class UserInfo implements Serializable {
 
     private String id;

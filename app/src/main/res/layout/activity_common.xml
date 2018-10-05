@@ -45,10 +45,12 @@
             android:text="tv 1"
             android:textColor="#2f2a28"
             android:textSize="12sp" />
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/ed1"
                 android:layout_width="match_parent"
@@ -56,12 +58,14 @@
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 android:theme="@style/EditTextStyle" />
+
             <ImageView
                 android:id="@+id/error1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:src="@drawable/error_icon"/>
+                android:src="@drawable/error_icon"
+                android:visibility="invisible" />
         </FrameLayout>
 
     </LinearLayout>
@@ -88,6 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/ed2"
                 android:layout_width="match_parent"
@@ -95,12 +100,14 @@
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 android:theme="@style/EditTextStyle" />
+
             <ImageView
                 android:id="@+id/error2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:src="@drawable/error_icon"/>
+                android:src="@drawable/error_icon"
+                android:visibility="invisible" />
         </FrameLayout>
 
     </LinearLayout>

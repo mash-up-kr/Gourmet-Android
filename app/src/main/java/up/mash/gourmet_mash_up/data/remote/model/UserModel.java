@@ -27,6 +27,7 @@ public class UserModel {
 
     @SerializedName("followerCount")
     private int followerCount;
+
     @SerializedName("isPublic")
     private boolean isPublic;
 

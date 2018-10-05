@@ -85,6 +85,9 @@
         <activity
             android:name=".activity.AddStampList_3"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.AddStampList_4"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
 
     </application>

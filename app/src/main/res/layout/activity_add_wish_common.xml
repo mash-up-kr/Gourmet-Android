@@ -73,7 +73,7 @@
             android:layout_height="140dp"
             android:layout_gravity="center"
             android:layout_marginBottom="48dp"
-            android:background="@color/turquoise_blue"
+            android:background="@drawable/foodpic"
             android:contentDescription="@string/pic_for_food" />
 
         <EditText

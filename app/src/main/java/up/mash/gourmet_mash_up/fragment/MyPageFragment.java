@@ -94,8 +94,6 @@ public class MyPageFragment extends Fragment {
                             Glide.with(this)
                                     .load(author.getProfileImage())
                                     .into(profileImage);
-
-
                         },
                         (t) -> Log.e(TAG, t.getMessage()),
                         () -> Log.d(TAG, "getMyProfile Complete")

@@ -40,9 +40,9 @@ public interface GourmetRESTClient {
     @FormUrlEncoded
     @Headers("Authorization: Basic Z291cm1ldC1jbGllbnQ6c2VjcmV0")
     @POST("/api/oauth/token")
-    Flowable<TokenModel> login(@Field("username") String userName,
-                               @Field("password") String password,
-                               @Field("grant_type") String grant_type);
+    Observable<TokenModel> login(@Field("username") String userName,
+                                 @Field("password") String password,
+                                 @Field("grant_type") String grant_type);
 
     /**
      * Me-Controller
@@ -103,4 +103,32 @@ public interface GourmetRESTClient {
     Call<BaseListModelWithReviewModel> getFollowUser(@Path("userId") int userId,
                                                      @Query("count") int count,
                                                      @Query("cursor") int cursor);
+
+    /**
+     * wish 추가
+     */
+    @Multipart
+    @POST("/api/wish")
+    Observable<ReviewModel> addSingleWishList(@Header("Authorization") String authorization,
+                                              @Part MultipartBody.Part file,
+                                              @Part("restaurant") RequestBody restaurant,
+                                              @Part("address") RequestBody address,
+                                              @Part("menu") RequestBody menu,
+                                              @Part("price") RequestBody price
+                                              );
+
+    /**
+     * Stamp 추가
+     */
+    @Multipart
+    @POST("/api/review")
+    Observable<ReviewModel> addSingleStamp(@Header("Authorization") String authorization,
+                                           @Part MultipartBody.Part file,
+                                           @Part("restaurant") RequestBody restaurant,
+                                           @Part("address") RequestBody address,
+                                           @Part("menu") RequestBody menu,
+                                           @Part("comment") RequestBody comment,
+                                           @Part("stamp") RequestBody stamp);
+
+
 }

@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ public class SignUpIdActivity extends AppCompatActivity {
     LinearLayout linearLayout;
     TextView mainText;
     TextView subText;
+    ImageView errorImage;
     EditText inputText;
     Button button;
 
@@ -32,6 +34,9 @@ public class SignUpIdActivity extends AppCompatActivity {
         linearLayout = findViewById(R.id.input_type_2);
         linearLayout.setVisibility(View.GONE);
 
+        errorImage = findViewById(R.id.error1);
+        errorImage.setVisibility(View.GONE);
+
         mainText = findViewById(R.id.main_text);
         mainText.setText(R.string.put_in_id);
 
@@ -39,13 +44,17 @@ public class SignUpIdActivity extends AppCompatActivity {
         subText.setText(R.string.id);
 
         inputText = findViewById(R.id.ed1);
-
         button = findViewById(R.id.enterNext);
 
         button.setOnClickListener(v -> {
 
             if (TextUtils.isEmpty(inputText.getText())) {
                 Toast.makeText(SignUpIdActivity.this, "아이디를 입력해주세요.", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            if (inputText.getText().length() <= 6) {
+                Toast.makeText(SignUpIdActivity.this, "적어도 6글자 이상을 입력해주시기 바랍니다.", Toast.LENGTH_LONG).show();
                 return;
             }
 

@@ -27,13 +27,10 @@ public class SignUpInActivity extends AppCompatActivity {
     LinearLayout linearLayout;
     Button button;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_common);
-
-        Intent intent = getIntent();
 
         mainText = findViewById(R.id.main_text);
         mainText.setText(R.string.put_in_your_PR);
@@ -50,13 +47,13 @@ public class SignUpInActivity extends AppCompatActivity {
         button.setOnClickListener(v -> {
 
             if (TextUtils.isEmpty(inputText.getText().toString())) {
-                Toast.makeText(SignUpInActivity.this, "자기소개를 입력해주세요.", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignUpInActivity.this, "자기를 소개할 수 있는 내용을 간략히 입력해주세요.", Toast.LENGTH_LONG).show();
                 return;
             }
 
-            Intent intent1 = new Intent(SignUpInActivity.this, SignUpPrActivity.class);
-            intent1.putExtra(ActivityConstants.USERINFO, inputText.getText().toString());
-            startActivity(intent1);
+            Intent goToSignUpActivity = new Intent(SignUpInActivity.this, SignUpPrActivity.class);
+            goToSignUpActivity.putExtra(ActivityConstants.USERINFO, inputText.getText().toString());
+            startActivity(goToSignUpActivity);
         });
 
 

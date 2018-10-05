@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,7 +16,6 @@ import com.bumptech.glide.Glide;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.listener.OnCheckedListener;
 
 import java.io.File;
 
@@ -26,6 +24,7 @@ import io.reactivex.disposables.Disposable;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import timber.log.Timber;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
 import up.mash.gourmet_mash_up.util.ActivityConstants;
@@ -36,7 +35,6 @@ import up.mash.gourmet_mash_up.util.Glide4Engine;
  */
 public class SignUpPrActivity extends AppCompatActivity {
 
-    final static String TAG = SignUpPrActivity.class.getSimpleName();
     ImageView imageView;
     Button button;
     File imageFile;
@@ -60,9 +58,10 @@ public class SignUpPrActivity extends AppCompatActivity {
         button = findViewById(R.id.enterNext);
         button.setText(R.string.complete);
         button.setOnClickListener((View v) -> {
+
             RequestBody introduce = RequestBody.create(MediaType.parse("multipart/form-data"), oneLineIntroduce);
             MultipartBody.Part imageProfilePart;
-            Log.i("Register", "ImageFile" + imageFile.getName());
+            Timber.d("ImageFile%s", imageFile.getName());
             if (imageFile.exists()) {
                 RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), imageFile);
                 imageProfilePart = MultipartBody.Part.createFormData("profile", imageFile.getName(), requestFile);
@@ -71,7 +70,7 @@ public class SignUpPrActivity extends AppCompatActivity {
                             startActivity(new Intent(SignUpPrActivity.this, MainActivity.class));
                             finish();
                         });
-            }else {
+            } else {
                 GourmatRestManager.setMeWithoutImage(user_token, introduce)
                         .subscribe();
             }
@@ -101,12 +100,7 @@ public class SignUpPrActivity extends AppCompatActivity {
                                             .imageEngine(new Glide4Engine())
                                             .originalEnable(true)
                                             .maxOriginalSize(10)
-                                            .setOnCheckedListener(new OnCheckedListener() {
-                                                @Override
-                                                public void onCheck(boolean isChecked) {
-                                                    Log.e("isChecked", "onCheck: isChecked=" + isChecked);
-                                                }
-                                            })
+                                            .setOnCheckedListener(isChecked -> Timber.e("onCheck: isChecked=%s", isChecked))
                                             .forResult(100);
                                     break;
                             }
@@ -130,12 +124,12 @@ public class SignUpPrActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK) {
             imageFile = new File(Matisse.obtainPathResult(data).get(0));
-//            https://stackoverflow.com/questions/22105775/imageview-in-circular-through-xml
-//            //TODO
+
             Glide.with(SignUpPrActivity.this)
                     .load(imageFile)
                     .into(imageView);
-            Log.e("OnActivityResult ", String.valueOf(Matisse.obtainOriginalState(data)));
+
+            Timber.e(String.valueOf(Matisse.obtainOriginalState(data)));
         }
     }
 }

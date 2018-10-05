@@ -7,6 +7,13 @@ public class RestaurantPostCommand {
     private double longitude;
     private String name;
 
+    public RestaurantPostCommand(String address, double latitude, double longitude, String name) {
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.name = name;
+    }
+
     public String getAddress() {
         return address;
     }

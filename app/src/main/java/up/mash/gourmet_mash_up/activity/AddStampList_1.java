@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.model.local.Stamp;
+import up.mash.gourmet_mash_up.data.local.Stamp;
 
 public class AddStampList_1 extends AppCompatActivity {
 

@@ -20,7 +20,6 @@ import up.mash.gourmet_mash_up.util.FragmentUtil;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
     ViewPager viewPager;
 
     Intent it;
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
 
                 fragmentBackStack.push(position);
+
                 switch (position) {
                     case 0:
                         bnView.setSelectedItemId(R.id.action_home);

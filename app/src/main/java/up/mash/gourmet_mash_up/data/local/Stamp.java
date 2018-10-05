@@ -1,4 +1,6 @@
-package up.mash.gourmet_mash_up.model.local;
+package up.mash.gourmet_mash_up.data.local;
+
+import java.io.File;
 
 public class Stamp {
 
@@ -6,6 +8,7 @@ public class Stamp {
     private String what;
     private String how;
     private boolean good;
+    private File imageFile;
 
 
     private static Stamp instance;
@@ -29,6 +32,15 @@ public class Stamp {
         this.what = "";
         this.how = "";
         this.good = false;
+        this.imageFile.delete();
+    }
+
+    public File getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(File imageFile) {
+        this.imageFile = imageFile;
     }
 
     public String getWhere() {
