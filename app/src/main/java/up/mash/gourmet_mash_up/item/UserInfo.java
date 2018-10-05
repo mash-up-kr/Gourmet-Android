@@ -10,7 +10,6 @@ public class UserInfo implements Serializable {
 
     private String id;
     private String pw;
-    private String intro;
 
     public String getId() {
         return id;
@@ -28,11 +27,4 @@ public class UserInfo implements Serializable {
         this.pw = pw;
     }
 
-    public String getIntro() {
-        return intro;
-    }
-
-    public void setIntro(String intro) {
-        this.intro = intro;
-    }
 }
