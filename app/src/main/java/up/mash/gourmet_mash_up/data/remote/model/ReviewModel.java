@@ -9,22 +9,17 @@ public class ReviewModel {
     private int id;
     @SerializedName("stamp")
     private String stamp;
-
     @SerializedName("author")
     @Expose
     private UserModel author;
-
     @SerializedName("restaurant")
     @Expose
     private RestaurantModel restaurant;
-
     @SerializedName("menu")
     @Expose
     private MenuModel menu;
-
     @SerializedName("menuTastes")
     private String[] menuTaste;
-
     @SerializedName("reviewImageUrl")
     private String reviewImageUrl;
 

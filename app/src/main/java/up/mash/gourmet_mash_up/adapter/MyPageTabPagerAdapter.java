@@ -4,8 +4,8 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.util.Log;
 
+import timber.log.Timber;
 import up.mash.gourmet_mash_up.fragment.MyStampFragment;
 import up.mash.gourmet_mash_up.fragment.MyWishFragment;
 
@@ -22,8 +22,8 @@ public class MyPageTabPagerAdapter extends FragmentStatePagerAdapter {
         super(fragmentManager);
 
         this.tabCount = tabCount;
-        myWishFragment = MyWishFragment.newInstance(context);
-        myStampFragment = MyStampFragment.newInstance(context);
+        myWishFragment = MyWishFragment.newInstance();
+        myStampFragment = MyStampFragment.newInstance();
     }
 
     @Override
@@ -31,10 +31,10 @@ public class MyPageTabPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                Log.e(TAG, "return myWishFragment!!");
+                Timber.e("myWishFragment");
                 return myWishFragment;
             case 1:
-                Log.e(TAG, "return myStampFragment!!");
+                Timber.e("myStampFragment");
                 return myStampFragment;
         }
         return null;

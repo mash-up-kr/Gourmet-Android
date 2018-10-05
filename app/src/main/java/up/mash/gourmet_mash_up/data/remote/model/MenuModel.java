@@ -5,16 +5,15 @@ import com.google.gson.annotations.SerializedName;
 public class MenuModel {
 
     @SerializedName("id")
-    int id;
+    private int id;
     @SerializedName("name")
-    String name;
+    private String name;
     @SerializedName("price")
-    int price;
+    private int price;
     @SerializedName("registeredTime")
-    String registeredTime;
-
+    private String registeredTime;
     @SerializedName("wished")
-    boolean wished;
+    private boolean wished;
 
     public boolean isWished() {
         return wished;

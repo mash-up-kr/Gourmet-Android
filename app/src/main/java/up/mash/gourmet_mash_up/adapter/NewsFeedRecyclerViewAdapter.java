@@ -52,7 +52,6 @@ public class NewsFeedRecyclerViewAdapter extends RecyclerView.Adapter<NewsFeedRe
             Glide.with(mContext)
                     .load(reviewModel.getReviewImageUrl())
                     .into(holder.imageView);
-            holder.setReview(reviewModel);
 
             holder.itemView.setOnClickListener(v -> {
                 Toast.makeText(mContext, "GG", Toast.LENGTH_SHORT).show();
@@ -75,10 +74,6 @@ public class NewsFeedRecyclerViewAdapter extends RecyclerView.Adapter<NewsFeedRe
             super(view);
             this.imageView = view.findViewById(R.id.grid_layout_content);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        }
-
-        void setReview(ReviewModel review) {
-
         }
     }
 }

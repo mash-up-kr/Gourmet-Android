@@ -1,10 +1,18 @@
 package up.mash.gourmet_mash_up.data.remote.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class BaseListModelWithWishModel {
 
+    @SerializedName("count")
     private int count;
-    private WishModel data;
-    private int nextpage;
+    @SerializedName("data")
+    private List<WishModel> data;
+    @SerializedName("nextPage")
+    private int nextPage;
+    @SerializedName("totalCount")
     private int totalCount;
 
     public int getCount() {
@@ -15,20 +23,20 @@ public class BaseListModelWithWishModel {
         this.count = count;
     }
 
-    public WishModel getData() {
+    public List<WishModel> getData() {
         return data;
     }
 
-    public void setData(WishModel data) {
+    public void setData(List<WishModel> data) {
         this.data = data;
     }
 
-    public int getNextpage() {
-        return nextpage;
+    public int getNextPage() {
+        return nextPage;
     }
 
-    public void setNextpage(int nextpage) {
-        this.nextpage = nextpage;
+    public void setNextPage(int nextPage) {
+        this.nextPage = nextPage;
     }
 
     public int getTotalCount() {

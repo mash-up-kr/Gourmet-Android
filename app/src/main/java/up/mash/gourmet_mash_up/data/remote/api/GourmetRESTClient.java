@@ -21,9 +21,7 @@ import retrofit2.http.Query;
 import up.mash.gourmet_mash_up.data.remote.model.BaseListModelWithReviewModel;
 import up.mash.gourmet_mash_up.data.remote.model.BaseListModelWithWishModel;
 import up.mash.gourmet_mash_up.data.remote.model.ReviewModel;
-import up.mash.gourmet_mash_up.data.remote.model.ReviewPostCommand;
 import up.mash.gourmet_mash_up.data.remote.model.UserModel;
-import up.mash.gourmet_mash_up.data.remote.model.WishModel;
 import up.mash.gourmet_mash_up.data.remote.model.login.RegisterRes;
 import up.mash.gourmet_mash_up.data.remote.model.login.SignInCommand;
 import up.mash.gourmet_mash_up.data.remote.model.login.TokenModel;
@@ -61,31 +59,15 @@ public interface GourmetRESTClient {
     Observable<UserModel> setMeWithoutImage(@Header("Authorization") String authorization,
                                             @Part("introduce") RequestBody introduce);
 
-    @GET("/api/me/stamps?page={page}&size={size}")
-    Flowable<BaseListModelWithReviewModel> getStampesByMe(@Header("Authorization") String authorization,
-                                                          @Path("page") int count,
-                                                          @Path("size") int size);
+    @GET("/api/me/stamps")
+    Observable<BaseListModelWithReviewModel> getStampesByMe(@Header("Authorization") String authorization);
 
-    @GET("/api/me/wishlist?page={page}&size={size}")
-    Flowable<BaseListModelWithWishModel> getWishlists(@Header("Authorization") String authorization,
-                                                      @Path("page") int count,
-                                                      @Path("size") int size);
+    @GET("/api/me/wishlist")
+    Observable<BaseListModelWithWishModel> getWishlists(@Header("Authorization") String authorization);
+    //TODO Query
 
     @GET("/api/newsfeed")
     Observable<BaseListModelWithReviewModel> getTotalWishlists(@Header("Authorization") String authorization);
-
-    /**
-     * Review-Controller
-     */
-    @Headers("Content-Type: application/json")
-    @POST("/review")
-    Call<ReviewModel> reviewPostCommand(@Body ReviewPostCommand command);
-
-    @GET("/review/{reviewId}")
-    Call<ReviewModel> getReview(@Path("reviewId") int id);
-
-    @POST("/review/{reviewId}/wish")
-    Call<WishModel> setWishList(@Path("reviewId") int id);
 
     /**
      * user-Controller
@@ -115,7 +97,7 @@ public interface GourmetRESTClient {
                                               @Part("address") RequestBody address,
                                               @Part("menu") RequestBody menu,
                                               @Part("price") RequestBody price
-                                              );
+    );
 
     /**
      * Stamp 추가
@@ -129,6 +111,4 @@ public interface GourmetRESTClient {
                                            @Part("menu") RequestBody menu,
                                            @Part("comment") RequestBody comment,
                                            @Part("stamp") RequestBody stamp);
-
-
 }

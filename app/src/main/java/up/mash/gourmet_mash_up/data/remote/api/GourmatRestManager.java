@@ -9,10 +9,10 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import up.mash.gourmet_mash_up.data.remote.BaseNetworkRequestModule;
-import up.mash.gourmet_mash_up.data.remote.model.BaseListModelWithReviewModel;
 import up.mash.gourmet_mash_up.data.remote.model.BaseListModelWithWishModel;
 import up.mash.gourmet_mash_up.data.remote.model.ReviewModel;
 import up.mash.gourmet_mash_up.data.remote.model.UserModel;
+import up.mash.gourmet_mash_up.data.remote.model.WishModel;
 import up.mash.gourmet_mash_up.data.remote.model.login.RegisterRes;
 import up.mash.gourmet_mash_up.data.remote.model.login.SignInCommand;
 import up.mash.gourmet_mash_up.data.remote.model.login.TokenModel;
@@ -60,18 +60,22 @@ public class GourmatRestManager {
 
     }
 
-    public static Flowable<BaseListModelWithReviewModel> getStampListOnMe(String authToken, int count, int size) {
+    public static Observable<List<ReviewModel>> getStampListOnMe(String authToken) {
         return mGourmetRESTClient
-                .getStampesByMe("Bearer " + authToken, count, size)
+                .getStampesByMe("Bearer " + authToken)
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io());
+                .observeOn(Schedulers.io())
+                .map(a -> a.getData())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public static Flowable<BaseListModelWithWishModel> getWishListOnMe(String authToken, int count, int size) {
+    public static Observable<List<WishModel>> getWishListOnMe(String authToken) {
         return mGourmetRESTClient
-                .getWishlists("Bearer " + authToken, count, size)
+                .getWishlists("Bearer " + authToken)
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io());
+                .observeOn(Schedulers.io())
+                .map(BaseListModelWithWishModel::getData)
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public static Observable<List<ReviewModel>> getTotalWishLists(String authToken) {

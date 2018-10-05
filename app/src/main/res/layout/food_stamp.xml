@@ -56,14 +56,14 @@
                 android:textSize="12sp" />
 
             <ImageView
-                android:id="@+id/stamp"
+                android:id="@+id/my_stamp"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginBottom="4dp"
                 android:layout_marginRight="16dp"
-                app:srcCompat="@drawable/untitled_1_01" />
+                app:srcCompat="@drawable/good_stamp" />
 
 
         </RelativeLayout>

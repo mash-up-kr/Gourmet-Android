@@ -1,7 +1,10 @@
 package up.mash.gourmet_mash_up.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,60 +16,56 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import timber.log.Timber;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.adapter.MyStampRecyclerViewAdapter;
-import up.mash.gourmet_mash_up.item.FoodStamp;
+import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
+import up.mash.gourmet_mash_up.data.remote.model.ReviewModel;
 
 public class MyStampFragment extends Fragment {
 
     MyStampRecyclerViewAdapter myStampRecyclerViewAdapter;
     RecyclerView myStampRecyclerView;
-    ArrayList<FoodStamp> arrayListofStamp;
+    ArrayList<ReviewModel> mReviewModelArrayList;
+    Context mContext;
 
-    public static MyStampFragment newInstance(Context context) {
+    public static MyStampFragment newInstance() {
         return new MyStampFragment();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = getContext();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my_stamp, container, false);
-
-        initStampList();
-
-        myStampRecyclerView = view.findViewById(R.id.my_stamp_recycler_view);
-        myStampRecyclerViewAdapter = new MyStampRecyclerViewAdapter(arrayListofStamp);
-        myStampRecyclerView.setAdapter(myStampRecyclerViewAdapter);
-
-        myStampRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        return view;
+        return inflater.inflate(R.layout.fragment_my_stamp, container, false);
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-    }
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String authToken = preferences.getString("auth_token", "");
+        Timber.d(authToken);
 
-    public void initStampList() {
-        arrayListofStamp = new ArrayList<>();
+        myStampRecyclerView = view.findViewById(R.id.my_stamp_recycler_view);
+        mReviewModelArrayList = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
-            FoodStamp foodStamp = new FoodStamp();
+        myStampRecyclerViewAdapter = new MyStampRecyclerViewAdapter(mReviewModelArrayList, mContext);
+        myStampRecyclerView.setAdapter(myStampRecyclerViewAdapter);
+        myStampRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-            foodStamp.setLocationName("상호명" + (i + 1));
-            foodStamp.setMenuName("메뉴명" + (i + 1));
-            foodStamp.setTradeName("위치명" + (i + 1));
-            foodStamp.setLike_dislike((i / 2) == 0);
-
-            arrayListofStamp.add(foodStamp);
-
-//            Log.e("create", "menuName : " + foodStamp.getMenuName());
-        }
+        GourmatRestManager.getStampListOnMe(authToken)
+                .subscribe(
+                        (res) -> myStampRecyclerViewAdapter.updateStamp(res),
+                        Timber::d,
+                        () -> Timber.d("onTotalMyStamps")
+                );
     }
 }

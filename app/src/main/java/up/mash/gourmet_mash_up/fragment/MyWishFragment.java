@@ -2,9 +2,11 @@ package up.mash.gourmet_mash_up.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,30 +19,31 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+import timber.log.Timber;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.adapter.MyWishRecyclerViewAdapter;
-import up.mash.gourmet_mash_up.item.FoodWish;
+import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
+import up.mash.gourmet_mash_up.data.remote.model.WishModel;
 
 
 public class MyWishFragment extends Fragment {
 
     MyWishRecyclerViewAdapter myWishRecyclerViewAdapter;
     RecyclerView myWishRecyclerView;
-    ArrayList<FoodWish> arrayListOfFood;
+    ArrayList<WishModel> myWishList;
+    Context mContext;
 
-    @SuppressLint("StaticFieldLeak")
-    static Context mContext;
-
-    public static MyWishFragment newInstance(Context context) {
-        mContext = context;
+    public static MyWishFragment newInstance() {
         return new MyWishFragment();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.mContext = getContext();
     }
 
+    @SuppressLint("CheckResult")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,57 +56,67 @@ public class MyWishFragment extends Fragment {
 
         NetworkInfo activeNetwork = null;
 
-        if (cm != null)
+        if (cm != null) {
             activeNetwork = cm.getActiveNetworkInfo();
+        }
 
 
         boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
         if (isConnected) {
+
             background_layout_view.setVisibility(View.GONE);
             myWishRecyclerView.setVisibility(View.VISIBLE);
-        } else if (arrayListOfFood.size() <= 0) {
+
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            String token = preferences.getString("auth_token", "");
+            Timber.d(token);
+
+            myWishList = new ArrayList<>();
+
+            myWishRecyclerViewAdapter = new MyWishRecyclerViewAdapter(myWishList, mContext);
+            myWishRecyclerView.setAdapter(myWishRecyclerViewAdapter);
+
+            myWishRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+            GourmatRestManager
+                    .getWishListOnMe(token)
+                    .subscribe(
+                            (res) -> myWishRecyclerViewAdapter.updateReview(res),
+                            Timber::d,
+                            () -> Timber.d("onTotalWIshList")
+                    );
+        } else if (myWishList.size() <= 0) {
 
             //TODO 내용물이 없을 경우.
 
         } else {
+            //인터넷 연결 안될 때
+
             myWishRecyclerView.setVisibility(View.GONE);
             background_layout_view.setVisibility(View.VISIBLE);
             Button refershButton = background_layout_view.findViewById(R.id.button_refresh_internet);
             refershButton.setOnClickListener(v -> {
-                //TODO Retry Request
+                refreshList();
             });
         }
-
-        initWishList();
-
-        myWishRecyclerViewAdapter = new MyWishRecyclerViewAdapter(arrayListOfFood);
-        myWishRecyclerView.setAdapter(myWishRecyclerViewAdapter);
-
-        myWishRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
         return view;
+    }
+
+    @SuppressLint("CheckResult")
+    private void refreshList() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String token = preferences.getString("auth_token", "");
+        Timber.d(token);
+        GourmatRestManager.getWishListOnMe(token)
+                .subscribe(
+                        (res) -> myWishRecyclerViewAdapter.updateReview(res),
+                        Timber::d,
+                        () -> Timber.d("onTotalWIshList")
+                );
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-    }
-
-    public void initWishList() {
-
-        arrayListOfFood = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
-            FoodWish foodWish = new FoodWish();
-
-            foodWish.setLocationName("상호명" + (i + 1));
-            foodWish.setMenuName("메뉴명" + (i + 1));
-            foodWish.setTradeName("위치명" + (i + 1));
-            foodWish.setLike_dislike((i / 2) == 0);
-            foodWish.setLike_percentage((int) (Math.random() * 100));
-
-            arrayListOfFood.add(foodWish);
-        }
     }
 }

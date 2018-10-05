@@ -11,10 +11,8 @@ public class RestaurantModel {
     private long latitude;
     @SerializedName("longitude")
     private long longitude;
-
     @SerializedName("address")
     private String address;
-
     @SerializedName("registeredTime")
     private String registeredTime;
 
