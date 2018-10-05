@@ -1,9 +1,11 @@
 package up.mash.gourmet_mash_up.data.remote.model;
 
+import java.util.List;
+
 public class BaseListModelWithReviewModel {
 
     private int count;
-    private ReviewModel data;
+    private List<ReviewModel> data;
     private int nextpage;
     private int totalCount;
 
@@ -15,14 +17,9 @@ public class BaseListModelWithReviewModel {
         this.count = count;
     }
 
-    public ReviewModel getData() {
+    public List<ReviewModel> getData() {
         return data;
     }
-
-    public void setData(ReviewModel data) {
-        this.data = data;
-    }
-
     public int getNextpage() {
         return nextpage;
     }

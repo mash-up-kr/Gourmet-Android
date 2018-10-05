@@ -28,7 +28,6 @@ import java.util.Locale;
 
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.adapter.MyPageTabPagerAdapter;
-import up.mash.gourmet_mash_up.app.GlideApp;
 import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
 import up.mash.gourmet_mash_up.data.remote.model.UserModel;
 
@@ -91,10 +90,6 @@ public class MyPageFragment extends Fragment {
                             profileMyFollowingNumber.setText(String.format(Locale.KOREAN, "%3d", author.getFollowingCount()));
                             profileMyFollwerNumber.setText(String.format(Locale.KOREAN, "%3d", author.getFollowerCount()));
 
-                            GlideApp.with(this)
-                                    .setDefaultRequestOptions(requestOptions)
-                                    .load(author.getProfileImage())
-                                    .into(profileImage);
                         },
                         (t) -> Log.e(TAG, t.getMessage()),
                         () -> Log.d(TAG, "getMyProfile Complete")

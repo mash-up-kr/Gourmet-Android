@@ -1,5 +1,6 @@
 package up.mash.gourmet_mash_up.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.adapter.NewsFeedRecyclerViewAdapter;
+import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
+import up.mash.gourmet_mash_up.data.remote.model.ReviewModel;
 
 
 public class MemberFragment extends Fragment {
@@ -25,7 +28,7 @@ public class MemberFragment extends Fragment {
 
     RecyclerView recyclerView;
     NewsFeedRecyclerViewAdapter memberRecyclerViewAdapter;
-    public ArrayList<Object> arrayListOfItems;
+    public ArrayList<ReviewModel> arrayListOfItems;
 
     public static MemberFragment newInstance() {
         return new MemberFragment();
@@ -39,9 +42,6 @@ public class MemberFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String token = preferences.getString("auth_token", "");
-        Log.d(TAG, token);
 
     }
 
@@ -50,38 +50,28 @@ public class MemberFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_member, container, false);
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initArrayListOfItems();
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String token = preferences.getString("auth_token", "");
+        Log.d(TAG, token);
+        arrayListOfItems = new ArrayList<>();
         memberRecyclerViewAdapter = new NewsFeedRecyclerViewAdapter(arrayListOfItems);
+
+        GourmatRestManager.getTotalWishlists(token)
+                .subscribe(
+                        (wishLists) -> {
+                            memberRecyclerViewAdapter.updateReview(wishLists);
+                        },
+                        Throwable::getMessage,
+                        () -> Log.d("totalwish", "onComplate")
+                );
         recyclerView = view.findViewById(R.id.news_feed_recycler_view);
         recyclerView.setAdapter(memberRecyclerViewAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-
-    }
-
-    public void initArrayListOfItems() {
-        arrayListOfItems = new ArrayList<>();
-
-        for (int i = 0; i < 31; i++) {
-
-            switch (i % 4) {
-                case 0:
-                    arrayListOfItems.add(R.drawable.food_ex);
-                    break;
-                case 1:
-                    arrayListOfItems.add(R.drawable.food_ex);
-                    break;
-                case 2:
-                    arrayListOfItems.add(R.drawable.food_ex);
-                    break;
-                case 3:
-                    arrayListOfItems.add(R.drawable.food_ex);
-                    break;
-            }
-        }
     }
 }

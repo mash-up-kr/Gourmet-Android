@@ -1,6 +1,9 @@
 package up.mash.gourmet_mash_up.data.remote.api;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -9,8 +12,10 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import up.mash.gourmet_mash_up.data.remote.model.BaseListModelWithReviewModel;
@@ -19,9 +24,9 @@ import up.mash.gourmet_mash_up.data.remote.model.ReviewModel;
 import up.mash.gourmet_mash_up.data.remote.model.ReviewPostCommand;
 import up.mash.gourmet_mash_up.data.remote.model.UserModel;
 import up.mash.gourmet_mash_up.data.remote.model.WishModel;
+import up.mash.gourmet_mash_up.data.remote.model.login.RegisterRes;
 import up.mash.gourmet_mash_up.data.remote.model.login.SignInCommand;
 import up.mash.gourmet_mash_up.data.remote.model.login.TokenModel;
-import up.mash.gourmet_mash_up.data.remote.model.login.RegisterRes;
 
 public interface GourmetRESTClient {
 
@@ -30,7 +35,7 @@ public interface GourmetRESTClient {
      */
     @Headers("Content-Type: application/json")
     @POST("/api/auth/register")
-    Flowable<RegisterRes> registerUser(@Body SignInCommand UserRegisterBody);
+    Observable<RegisterRes> registerUser(@Body SignInCommand UserRegisterBody);
 
     @FormUrlEncoded
     @Headers("Authorization: Basic Z291cm1ldC1jbGllbnQ6c2VjcmV0")
@@ -45,18 +50,29 @@ public interface GourmetRESTClient {
     @GET("/api/me")
     Flowable<UserModel> getMe(@Header("Authorization") String authorization);
 
+    @Multipart
     @PUT("/api/me")
-    Call<UserModel> setMe(@Header("Authorization") String authorization);
+    Observable<UserModel> setMe(@Header("Authorization") String authorization,
+                                @Part MultipartBody.Part profile,
+                                @Part("introduce") RequestBody introduce);
+
+    @Multipart
+    @PUT("/api/me")
+    Observable<UserModel> setMeWithoutImage(@Header("Authorization") String authorization,
+                                            @Part("introduce") RequestBody introduce);
 
     @GET("/api/me/stamps?page={page}&size={size}")
-    Flowable<BaseListModelWithReviewModel> getStampes(@Header("Authorization") String authorization,
-                                                      @Path("page") int count,
-                                                      @Path("size") int size);
+    Flowable<BaseListModelWithReviewModel> getStampesByMe(@Header("Authorization") String authorization,
+                                                          @Path("page") int count,
+                                                          @Path("size") int size);
 
     @GET("/api/me/wishlist?page={page}&size={size}")
     Flowable<BaseListModelWithWishModel> getWishlists(@Header("Authorization") String authorization,
                                                       @Path("page") int count,
                                                       @Path("size") int size);
+
+    @GET("/api/newsfeed")
+    Observable<BaseListModelWithReviewModel> getTotalWishlists(@Header("Authorization") String authorization);
 
     /**
      * Review-Controller
