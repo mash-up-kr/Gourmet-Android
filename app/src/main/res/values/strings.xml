@@ -66,4 +66,7 @@
     <string name="here">여기</string>
     <string name="click_here">를 눌러주세요</string>
     <string name="codachaya">Codachaya</string>
+    <string name="no_one_gourmet">추천 해줄 수 미식가 아직 없습니다.\n올해의 미식가에 도전하세요!</string>
+    <string name="recommended_gourmet">추천 미식가</string>
+    <string name="newsfeed">뉴스피드</string>
 </resources>

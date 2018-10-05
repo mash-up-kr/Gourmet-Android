@@ -78,7 +78,7 @@
                 android:gravity="bottom|center">
 
                 <include
-                    android:id="@+id/bronze_id_layout"
+                    android:id="@+id/silver_id_layout"
                     layout="@layout/item_profile_image_with_id" />
             </LinearLayout>
 
@@ -107,9 +107,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
+            android:text="@string/Ranking"
             android:textColor="@color/darkish_pink"
-            android:textSize="19.5sp"
-            tools:text="@string/Ranking" />
+            android:textSize="19.5sp" />
 
         <View
             android:layout_width="match_parent"
@@ -119,9 +119,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:text="내 랭킹 1위"
             android:textColor="@color/turquoise_blue"
-            android:textSize="16sp"
-            tools:text="내 랭킹 12008위" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

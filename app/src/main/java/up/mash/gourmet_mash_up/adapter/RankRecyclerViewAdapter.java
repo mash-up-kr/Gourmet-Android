@@ -33,13 +33,12 @@ public class RankRecyclerViewAdapter extends RecyclerView.Adapter<RankRecyclerVi
 
         RankItem item = mArrayList.get(position);
 
-//        holder.rankingNumber.setText(item.getRankingNumber());
-//        holder.userId.setText(item.getUserId());
-//
-//        holder.userFollowerCount.setText(item.getUserFollowerCount());
-//        holder.stampCount.setText(item.getStampCount());
+        holder.rankingNumber.setText(item.getRankingNumber());
+        holder.userId.setText(item.getUserId());
 
-//        holder.userIdImageView.setImageResource(R.drawable.bronz);
+        holder.userFollowerCount.setText(item.getUserFollowerCount());
+        holder.stampCount.setText(item.getStampCount());
+        holder.userIdImageView.setImageResource(R.drawable.bronz);
     }
 
 

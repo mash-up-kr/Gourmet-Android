@@ -43,7 +43,7 @@ public class AddStampList_4 extends AppCompatActivity {
 
         init_common_stamp_wishlist();
         mContext = getApplicationContext();
-        tv_question_no.setText(R.string.q3);
+        tv_question_no.setText(R.string.q4);
         tv_ask_question.setText(R.string.how_the_taste);
 
         et_contents_stamp_wishList.setVisibility(View.GONE);
