@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.Locale;
@@ -89,6 +90,11 @@ public class MyPageFragment extends Fragment {
                             profileIntro.setText(author.getIntroduce());
                             profileMyFollowingNumber.setText(String.format(Locale.KOREAN, "%3d", author.getFollowingCount()));
                             profileMyFollwerNumber.setText(String.format(Locale.KOREAN, "%3d", author.getFollowerCount()));
+
+                            Glide.with(this)
+                                    .load(author.getProfileImage())
+                                    .into(profileImage);
+
 
                         },
                         (t) -> Log.e(TAG, t.getMessage()),
