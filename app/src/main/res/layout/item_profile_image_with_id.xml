@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:background="@drawable/roundedbutton"
         android:onClick="selectProfileImage"
-        app:srcCompat="@drawable/close_icon" />
+        app:srcCompat="@drawable/face_a" />
 
     <TextView
         android:id="@+id/ranking_user_id"
