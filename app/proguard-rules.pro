@@ -21,4 +21,3 @@
 #-renamesourcefileattribute SourceFile
 
 -dontwarn com.squareup.picasso.**
--dontwarn com.bumptech.glide.**

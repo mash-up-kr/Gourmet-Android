@@ -1,8 +1,11 @@
 package up.mash.gourmet_mash_up.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,17 +19,15 @@ import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.listener.OnCheckedListener;
 
-import org.reactivestreams.Subscription;
-
 import java.io.File;
 
-import io.reactivex.FlowableSubscriber;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import up.mash.gourmet_mash_up.R;
 import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
-import up.mash.gourmet_mash_up.data.remote.model.login.SignInCommand;
-import up.mash.gourmet_mash_up.item.UserInfo;
 import up.mash.gourmet_mash_up.util.ActivityConstants;
 import up.mash.gourmet_mash_up.util.Glide4Engine;
 
@@ -38,7 +39,9 @@ public class SignUpPrActivity extends AppCompatActivity {
     final static String TAG = SignUpPrActivity.class.getSimpleName();
     ImageView imageView;
     Button button;
+    File imageFile;
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,45 +49,32 @@ public class SignUpPrActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        UserInfo userInfo = (UserInfo) intent.getSerializableExtra(ActivityConstants.USERINFO);
+        String oneLineIntroduce = (String) intent.getSerializableExtra(ActivityConstants.USERINFO);
 
         imageView = findViewById(R.id.select_image);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String user_token = preferences.getString("auth_token", "");
+
         button = findViewById(R.id.enterNext);
         button.setText(R.string.complete);
         button.setOnClickListener((View v) -> {
-            Log.d("TAG", userInfo.getId() + " //" + userInfo.getPw() + " // " + userInfo.getIntro());
-            SignInCommand body = new SignInCommand(userInfo.getId(), userInfo.getPw());
-            GourmatRestManager.setRegister(body)
-                    .subscribe(new FlowableSubscriber() {
-                        @Override
-                        public void onSubscribe(Subscription s) {
-
-                        }
-
-                        @Override
-                        public void onNext(Object o) {
-                            Log.d(TAG, "onNext");
-                        }
-
-                        @Override
-                        public void onError(Throwable t) {
-                            Log.d(TAG, "onError");
-
-                            Intent signIn = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(signIn);
+            RequestBody introduce = RequestBody.create(MediaType.parse("multipart/form-data"), oneLineIntroduce);
+            MultipartBody.Part imageProfilePart;
+            Log.i("Register", "ImageFile" + imageFile.getName());
+            if (imageFile.exists()) {
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), imageFile);
+                imageProfilePart = MultipartBody.Part.createFormData("profile", imageFile.getName(), requestFile);
+                GourmatRestManager.setMe(user_token, imageProfilePart, introduce)
+                        .subscribe((a) -> {
+                            startActivity(new Intent(SignUpPrActivity.this, MainActivity.class));
                             finish();
-                        }
-
-                        @Override
-                        public void onComplete() {
-                            Log.d(TAG, "onComplete");
-                            Intent signIn = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(signIn);
-                            finish();
-                        }
-                    });
+                        });
+            }else {
+                GourmatRestManager.setMeWithoutImage(user_token, introduce)
+                        .subscribe();
+            }
         });
     }
 
@@ -139,7 +129,7 @@ public class SignUpPrActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK) {
-            File imageFile = new File(Matisse.obtainPathResult(data).get(0));
+            imageFile = new File(Matisse.obtainPathResult(data).get(0));
 //            https://stackoverflow.com/questions/22105775/imageview-in-circular-through-xml
 //            //TODO
             Glide.with(SignUpPrActivity.this)

@@ -73,6 +73,8 @@ public class AddStampList_3 extends AppCompatActivity {
                 Stamp.getIntance().setGood(true);
 
             startActivity(new Intent(AddStampList_3.this, MainActivity.class));
+
+
             Stamp.getIntance().clear();
             finish();
 

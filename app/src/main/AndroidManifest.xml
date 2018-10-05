@@ -66,16 +66,27 @@
 
         </activity>
 
-        <activity android:name=".activity.AddWishList_1" />
-        <activity android:name=".activity.AddWishList_2" />
-        <activity android:name=".activity.AddWishList_3" />
+        <activity
+            android:name=".activity.AddWishList_1"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.AddWishList_2"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.AddWishList_3"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <activity android:name=".activity.AddStampList_1" />
-        <activity android:name=".activity.AddStampList_2" />
-        <activity android:name=".activity.AddStampList_3" />
-        <meta-data
-            android:name="up.mash.gourmet_mash_up.app.MyAppGlideModule"
-            android:value="GlideModule"/>
+        <activity
+            android:name=".activity.AddStampList_1"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.AddStampList_2"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.AddStampList_3"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
     </application>
 
 </manifest>

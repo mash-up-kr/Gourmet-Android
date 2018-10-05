@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Objects;
 
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import up.mash.gourmet_mash_up.R;
+import up.mash.gourmet_mash_up.data.remote.api.GourmatRestManager;
+import up.mash.gourmet_mash_up.data.remote.model.login.RegisterRes;
+import up.mash.gourmet_mash_up.data.remote.model.login.SignInCommand;
 import up.mash.gourmet_mash_up.item.UserInfo;
 import up.mash.gourmet_mash_up.util.ActivityConstants;
 
@@ -58,7 +64,7 @@ public class SignUpPwActivity extends AppCompatActivity {
 
         button = findViewById(R.id.enterNext);
 
-        button.setOnClickListener(v -> {
+        button.setOnClickListener((View v) -> {
             if (inputText.getText().toString().equals("")
                     || inputText2.getText().toString().equals("")
                     || !Objects.equals(inputText.getText().toString(), inputText2.getText().toString())) {
@@ -66,9 +72,40 @@ public class SignUpPwActivity extends AppCompatActivity {
             }
 
             userInfo.setPw(inputText.getText().toString());
-            Intent intent1 = new Intent(getApplicationContext(), SignUpInActivity.class);
-            intent1.putExtra(ActivityConstants.USERINFO, userInfo);
-            startActivity(intent1);
+
+            SignInCommand body = new SignInCommand(userInfo.getId(), userInfo.getPw());
+            GourmatRestManager.setRegister(body)
+//                    .subscribe(
+//                            (response) -> {
+//                                Toast.makeText(getApplicationContext(), "회원가입이 완료되었습니다. 로그인을 해주시기 바랍니다.", Toast.LENGTH_SHORT).show();
+//                                startActivity(new Intent(getApplicationContext(), PostMainActivity.class));
+//                                finish();
+//                            },
+//                            Throwable::getMessage,
+//                            () -> {
+//                                Toast.makeText(getApplicationContext(), "완성. 로그인을 해주시기 바랍니다.", Toast.LENGTH_SHORT).show();
+//                            }
+//                    );
+                    .subscribe(new Observer<RegisterRes>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                        }
+
+                        @Override
+                        public void onNext(RegisterRes registerRes) {
+                            startActivity(new Intent(getApplicationContext(), PostMainActivity.class));
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            startActivity(new Intent(getApplicationContext(), PostMainActivity.class));
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
         });
     }
 }

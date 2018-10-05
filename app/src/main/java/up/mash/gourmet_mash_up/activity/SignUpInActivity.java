@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import up.mash.gourmet_mash_up.R;
-import up.mash.gourmet_mash_up.item.UserInfo;
 import up.mash.gourmet_mash_up.util.ActivityConstants;
 
 /**
@@ -20,7 +20,6 @@ import up.mash.gourmet_mash_up.util.ActivityConstants;
  */
 
 public class SignUpInActivity extends AppCompatActivity {
-
 
     TextView mainText;
     TextView subText;
@@ -36,8 +35,6 @@ public class SignUpInActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        UserInfo userInfo = (UserInfo) intent.getSerializableExtra(ActivityConstants.USERINFO);
-
         mainText = findViewById(R.id.main_text);
         mainText.setText(R.string.put_in_your_PR);
 
@@ -51,14 +48,14 @@ public class SignUpInActivity extends AppCompatActivity {
 
         button = findViewById(R.id.enterNext);
         button.setOnClickListener(v -> {
-            if (inputText.getText().toString().equals("")) {
+
+            if (TextUtils.isEmpty(inputText.getText().toString())) {
                 Toast.makeText(SignUpInActivity.this, "자기소개를 입력해주세요.", Toast.LENGTH_LONG).show();
                 return;
             }
 
-            userInfo.setIntro(inputText.getText().toString());
             Intent intent1 = new Intent(SignUpInActivity.this, SignUpPrActivity.class);
-            intent1.putExtra(ActivityConstants.USERINFO, userInfo);
+            intent1.putExtra(ActivityConstants.USERINFO, inputText.getText().toString());
             startActivity(intent1);
         });
 

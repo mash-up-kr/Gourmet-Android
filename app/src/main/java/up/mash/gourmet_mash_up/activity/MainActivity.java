@@ -61,9 +61,6 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         bnView.setSelectedItemId(R.id.action_home);
                         break;
-//                    case 1:
-//                        bnView.setSelectedItemId(R.id.action_member);
-//                        break;
                     case 1:
                         bnView.setSelectedItemId(R.id.action_rank);
                         break;

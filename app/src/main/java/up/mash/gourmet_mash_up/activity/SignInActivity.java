@@ -66,16 +66,21 @@ public class SignInActivity extends AppCompatActivity {
                     .logInByUser(id, password)
                     .subscribe((authObject) -> {
                                 if (setAuthToken(getApplicationContext(), authObject.getAccessToken())) {
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
+
+
+                                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+                                        //자기소개로
+                                        isFirstLogIn(getApplicationContext(), authObject.getAccessToken());
+                                        startActivity(new Intent(getApplicationContext(), SignUpInActivity.class));
+                                    } else {
+                                        startActivity(new Intent(getApplicationContext(), PostMainActivity.class));
+                                        finish();
+                                    }
                             },
                             (t) -> Log.e(TAG, t.getMessage()),
                             () -> Log.d(TAG, "AuthComplete")
                     );
-            //TODO AccountManager 사용 고려하고 싶으나 ㅠㅠㅠ https://www.pilanites.com/android-account-manager/
-            // https://medium.com/@zpcat/android-account-manager-c08404cbb112
         });
     }
 
@@ -84,10 +89,18 @@ public class SignInActivity extends AppCompatActivity {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString("auth_token", auth);
-            editor.commit();
+            editor.apply();
             return true;
         }
         return false;
+    }
+
+    private boolean isFirstLogIn(Context context, String auth) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("first", auth);
+            editor.apply();
+            return true;
     }
 
 
