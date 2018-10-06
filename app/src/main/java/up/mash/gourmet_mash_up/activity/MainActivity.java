@@ -7,6 +7,7 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.util.Stack;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationMenuView bnViewMenu;
     private ViewPageAdapter viewPageAdapter;
     AddFragment addFragment = new AddFragment();
+
     static Stack<Integer> fragmentBackStack = new Stack<>();
 
     @SuppressLint("RestrictedApi")
@@ -54,9 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-
+                Log.v("TAG", "position : " + position);
                 fragmentBackStack.push(position);
-
                 switch (position) {
                     case 0:
                         bnView.setSelectedItemId(R.id.action_home);
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (!fragmentBackStack.empty()) {
+            fragmentBackStack.pop();
             int value = fragmentBackStack.pop();
             viewPager.setCurrentItem(value, true);
         } else {

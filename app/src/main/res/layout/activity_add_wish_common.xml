@@ -74,6 +74,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="48dp"
             android:background="@drawable/foodpic"
+            android:scaleType="centerCrop"
             android:contentDescription="@string/pic_for_food" />
 
         <EditText
@@ -81,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="I am Hint Bro"
+            android:hint="@string/i_am_hint_bro"
             android:inputType="text"
             android:textAlignment="center"
             android:textSize="20sp"

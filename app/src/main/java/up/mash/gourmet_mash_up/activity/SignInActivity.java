@@ -73,7 +73,7 @@ public class SignInActivity extends AppCompatActivity {
 
                                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
                                     String temp = preferences.getString("abc", "");
-                                    if (temp.equals("")) {
+                                    if (!temp.equals("")) {
                                         isFirstLogIn(mContext, authObject.getAccessToken());
                                         startActivity(new Intent(mContext, SignUpInActivity.class));
                                     } else {

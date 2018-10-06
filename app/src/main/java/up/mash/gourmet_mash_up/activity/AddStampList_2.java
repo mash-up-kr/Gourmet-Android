@@ -44,9 +44,6 @@ public class AddStampList_2 extends AppCompatActivity {
         iv_picture_for_food.setOnClickListener(v -> Matisse.from(AddStampList_2.this)
                 .choose(MimeType.ofImage(), false)
                 .maxSelectable(1)
-                .gridExpectedSize(
-                        getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
-                .thumbnailScale(0.85f)
                 .imageEngine(new Glide4Engine())
                 .originalEnable(true)
                 .maxOriginalSize(10)

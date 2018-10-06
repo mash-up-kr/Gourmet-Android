@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -54,11 +53,9 @@ public class NewsFeedRecyclerViewAdapter extends RecyclerView.Adapter<NewsFeedRe
                     .into(holder.imageView);
 
             holder.itemView.setOnClickListener(v -> {
-                Toast.makeText(mContext, "GG", Toast.LENGTH_SHORT).show();
+//                Intent goToDatailedActivity = new Intent(mContext, )
             });
         }
-
-
     }
 
     @Override
