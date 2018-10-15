@@ -12,6 +12,7 @@ import android.util.Log;
 import java.util.Stack;
 
 import butterknife.ButterKnife;
+import timber.log.Timber;
 import up.mash.gourmet_mash_up.R;
 
 import up.mash.gourmet_mash_up.adapter.ViewPageAdapter;
@@ -30,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private ViewPageAdapter viewPageAdapter;
     AddFragment addFragment = new AddFragment();
 
-    static Stack<Integer> fragmentBackStack = new Stack<>();
-
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
         viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPageAdapter);
 
-        if (fragmentBackStack.isEmpty()) fragmentBackStack.push(0);
-
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -56,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                Log.v("TAG", "position : " + position);
-                fragmentBackStack.push(position);
+                Timber.tag("TAG").d("position : %s", position);
                 switch (position) {
                     case 0:
                         bnView.setSelectedItemId(R.id.action_home);
@@ -80,28 +76,19 @@ public class MainActivity extends AppCompatActivity {
                 item -> {
                     switch (item.getItemId()) {
                         case R.id.action_home:
-                            if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
-                                viewPager.setCurrentItem(0, true);
+                            viewPager.setCurrentItem(0, true);
                             break;
                         case R.id.action_rank:
-                            if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
-                                viewPager.setCurrentItem(1, true);
+                            viewPager.setCurrentItem(1, true);
                             break;
                         case R.id.action_profile:
-                            if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager()))
-                                viewPager.setCurrentItem(2, true);
+                            viewPager.setCurrentItem(2, true);
                             break;
                         case R.id.action_add:
-
-                            if (!FragmentUtil.removeBackStackIfexisted(getSupportFragmentManager())) {
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.entry_view, addFragment)
-                                        .addToBackStack(null)
-                                        .commit();
-                            } else if (!fragmentBackStack.isEmpty()) {
-                                viewPager.setCurrentItem(fragmentBackStack.pop());
-                                setSelectedItemId(fragmentBackStack.pop());
-                            }
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.entry_view, addFragment)
+                                    .addToBackStack(null)
+                                    .commit();
                             break;
                     }
                     return true;
@@ -111,13 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (!fragmentBackStack.empty()) {
-            fragmentBackStack.pop();
-            int value = fragmentBackStack.pop();
-            viewPager.setCurrentItem(value, true);
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
     public void setSelectedItemId(int position) {

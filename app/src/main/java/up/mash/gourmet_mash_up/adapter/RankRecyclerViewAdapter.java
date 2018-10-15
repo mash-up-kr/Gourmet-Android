@@ -35,12 +35,10 @@ public class RankRecyclerViewAdapter extends RecyclerView.Adapter<RankRecyclerVi
 
         holder.rankingNumber.setText(item.getRankingNumber());
         holder.userId.setText(item.getUserId());
-
         holder.userFollowerCount.setText(item.getUserFollowerCount());
         holder.stampCount.setText(item.getStampCount());
         holder.userIdImageView.setImageResource(R.drawable.bronz);
     }
-
 
     @Override
     public int getItemCount() {
